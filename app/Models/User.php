@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\Admin\Property;
+use App\Models\Admin\Specificity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -48,5 +49,9 @@ class User extends Authenticatable
 
     public function properties() : HasMany {
         return $this->hasMany(Property::class) ; 
+    }
+
+    public function specificities() : HasMany {
+        return $this->hasMany(Specificity::class) ; 
     }
 }
