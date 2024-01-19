@@ -37,7 +37,7 @@
                     <form action="{{route('admin.properties.destroy', $property)}}" method="post">
                         @csrf
                         @method('delete')
-                        <button>Supprimer</button>
+                        <button class="btn btn-danger">Supprimer</button>
                     </form>
                 </div>
             </td>
@@ -49,4 +49,3 @@
 </table>
     
 @endsection
-    

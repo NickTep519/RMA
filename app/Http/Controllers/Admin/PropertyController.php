@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PropertyFormRequest;
 use App\Models\Admin\Property;
+use App\Models\Admin\Specificity;
+use App\Models\City;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
 {
@@ -14,8 +17,10 @@ class PropertyController extends Controller
      */
     public function index()
     {
+        $user_id = Auth::user()->id ; 
+
         return view('admin.properties.index', [
-            'properties' => Property::orderBy('created_at', 'desc')->with('city')->paginate(16)
+            'properties' => Property::orderBy('created_at', 'desc')->where('user_id', $user_id)->with('city')->paginate(16)
         ]) ; 
     }
 
@@ -39,7 +44,9 @@ class PropertyController extends Controller
         ]) ; 
 
         return view('admin.properties.form', [
-            'property' => $property
+            'property' => $property,
+            'specificities' => Specificity::pluck('name_speci', 'id'),
+            'cities' => City::pluck('name_city', 'id')
         ]) ; 
     }
 
@@ -48,7 +55,18 @@ class PropertyController extends Controller
      */
     public function store(PropertyFormRequest $request)
     {
-        Property::create($request->validated()) ; 
+        $user_id = Auth::user()->id ; 
+        $datas = $request->validated() ; 
+        $data = collect($datas)->except(['specificities', 'city'])->all() ;  
+
+        $property = Property::create($datas) ; 
+
+        $city = City::find($datas['city']) ; 
+        $property->city()->associate($city) ; 
+        $property->user_id = $user_id ; 
+        $property->save() ; 
+
+        $property->specificities()->sync($datas['specificities']) ; 
 
         return to_route('admin.properties.index')->with('success', 'Le bien a été bien ajouter') ; 
     }
@@ -60,7 +78,9 @@ class PropertyController extends Controller
     public function edit(Property $property)
     {
         return view('admin.properties.form', [
-            '$property' => $property
+            'property' => $property,
+            'specificities' => Specificity::pluck('name_speci', 'id'),
+            'cities' => City::pluck('name_city', 'id')
         ]) ; 
     }
 
@@ -69,7 +89,16 @@ class PropertyController extends Controller
      */
     public function update(PropertyFormRequest $request, Property $property)
     {
-        $property->update($request->validated()) ; 
+        $datas = $request->validated() ; 
+        $data = collect($datas)->except(['specificities', 'city'])->all() ;  
+
+        $property->update($datas) ; 
+
+        $city = City::find($datas['city']) ; 
+        $property->city()->associate($city) ; 
+        $property->save() ; 
+
+        $property->specificities()->sync($datas['specificities']) ;
 
         return to_route('admin.properties.index')->with('success', 'Le bien a été bien mis à jour') ; 
     }
