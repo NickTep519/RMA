@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\SpecificityController;
+use App\Http\Controllers\DiscoveryPropertiesContoller;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'home']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,9 +31,20 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     Route::resource('properties', PropertyController::class)->except(['show']) ;
     Route::resource('specificities', SpecificityController::class)->except(['show']) ; 
 }) ; 
+
+Route::prefix('biens')->name('property.')->group(function(){
+    Route::get('/', [DiscoveryPropertiesContoller::class, 'index'])->name('index') ; 
+    Route::get('/{slug}-{property}', [DiscoveryPropertiesContoller::class, 'show'])->name('show')->where(
+        [
+            'slug' => '[0-9a-z\-]+',
+            'property' => '[0-9]+'
+        ]
+    ) ; 
+}) ; 
+
 
 require __DIR__.'/auth.php';

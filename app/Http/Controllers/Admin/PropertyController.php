@@ -17,10 +17,10 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::user()->id ; 
+        //$user_id = Auth::user()->id ; 
 
         return view('admin.properties.index', [
-            'properties' => Property::orderBy('created_at', 'desc')->where('user_id', $user_id)->with('city')->paginate(16)
+            'properties' => Property::orderBy('created_at', 'desc')->with('city')->paginate(16)
         ]) ; 
     }
 
