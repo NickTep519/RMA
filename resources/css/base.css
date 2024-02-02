@@ -1,84 +1,184 @@
-body {
-    font-family: Arial, sans-serif;
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 header {
-    background-color: #00008B;
-    color: #fff;
-    padding: 10px 0;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
 }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+.logo {
+    margin-bottom: 10px;
 }
 
 .logo a {
-    color: #fff;
+    color: white;
     text-decoration: none;
     font-size: 1.5em;
     font-weight: bold;
+    display: block;
 }
 
-.nav-links ul {
+nav ul {
     list-style: none;
     display: flex;
+    justify-content: center;
+    padding: 0;
 }
 
-.nav-links li {
+nav ul li {
     margin-right: 20px;
 }
 
-.nav-links a {
+nav ul li a {
+    color: white;
     text-decoration: none;
-    color: #fff;
+    font-weight: bold;
 }
 
 .user-profile {
     display: flex;
     align-items: center;
+    justify-content: center;
+    margin-top: 10px;
 }
 
-
-.user-profile img {
+.user-image {
     width: 40px;
     height: 40px;
+    background-color: white;
     border-radius: 50%;
     margin-right: 10px;
-    overflow: hidden;  
-} 
-
-.btn {
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    overflow: hidden;
 }
 
-.btn-secondary {
-    background-color: #555;
+.user-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 main {
-    max-width: 1200px;
-    margin: 20px auto;
+    padding: 20px;
+}
+
+.welcome {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.welcome h1 {
+    color: #333;
+}
+
+.bouton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.bouton:hover {
+    background-color: #555;
+}
+
+h2 {
+    color: #333;
+}
+
+.property-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.property-card {
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.property-card:hover {
+    transform: scale(1.05);
+}
+
+.property-image img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.property-details {
+    margin-bottom: 10px;
+}
+
+.property-details p {
+    margin: 5px 0;
+}
+
+.property-actions {
+    text-align: center;
+}
+
+.property-actions a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.property-actions a:hover {
+    background-color: #555;
 }
 
 footer {
-    background-color: #00008B;
-    color: #fff;
+    background-color: #333;
+    color: white;
     text-align: center;
-    padding: 10px 0;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 5px; /* Ajoute de l'espace en haut du pied de la page */
 }
-.welcome {
-    text-align: center;
-    padding: 50px 0;
-    background-color: #f4f4f4;
+
+@media screen and (max-width: 425px) {
+    header {
+        padding: 10px;
+    }
+
+    .logo {
+        margin-bottom: 0;
+    }
+
+    nav ul {
+        margin-top: 10px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .property-card {
+        width: 48%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .property-card {
+        width: 30%;
+    }
 }

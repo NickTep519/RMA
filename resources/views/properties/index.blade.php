@@ -2,42 +2,36 @@
 
 @section('title', 'Les biens disponibles')
     
-@vite(['resources/css/home.css'])
 
 @section('content')
-    <section class="filter-section">
-        <form action="" method="POST">
-            <label for="city">Ville:</label>
-            <select id="city">
-                <option value="all">Toutes les villes</option>
-                <option value="city1">Ville 1</option>
-                <option value="city2">Ville 2</option>
+
+    <section class="filters">
+        <h2>Filtres</h2>
+        <form>
+            <input type="text" id="budget" name="budget">
+            <label for="budget">Budget Maximal</label>
+
+            <select id="city" name="city">
+                <!-- Options dynamiques peuvent être ajoutées ici -->
             </select>
-    
-            <label for="neighborhood">Quartier:</label>
-            <select id="neighborhood">
-                <option value="all">Tous les quartiers</option>
-                <option value="neighborhood1">Quartier 1</option>
-                <option value="neighborhood2">Quartier 2</option>
-            </select>
-    
-            <label for="price">Prix (F CFA):</label>
-            <input type="number" id="price" min="0" placeholder="0">
-            <button class="btn btn-primary">Filtrer</button>
+            <label for="city">Ville</label>
+
+            <input type="text" id="quartier" name="quartier">
+            <label for="quartier">Quartier</label>
+
+            <input type="text" id="title" name="title">
+            <label for="ville">Type de Bien</label>
+
+            <button type="submit" class="btn btn-primary">Filtrer</button>
         </form>
-       
     </section>
 
     <section class="property-cards">
-
-
-        @include('properties.card')
-        @include('properties.card')
-        @include('properties.card')
-        @include('properties.card')
-
-
+        @foreach ($properties as $property)
+            @include('properties.card')
+        @endforeach
     </section>
 
-    
+    {{$properties->render()}}
+
 @endsection

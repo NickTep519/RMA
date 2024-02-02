@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\SpecificityController;
+use App\Http\Controllers\DemarcheursController;
 use App\Http\Controllers\DiscoveryPropertiesContoller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -18,10 +19,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'home']);
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard') ;
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -30,13 +30,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/', [HomeController::class, 'home'])->name('home.index') ;
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
     Route::resource('properties', PropertyController::class)->except(['show']) ;
     Route::resource('specificities', SpecificityController::class)->except(['show']) ; 
 }) ; 
 
-Route::prefix('biens')->name('property.')->group(function(){
+Route::prefix('biens')->name('properties.')->group(function(){
     Route::get('/', [DiscoveryPropertiesContoller::class, 'index'])->name('index') ; 
     Route::get('/{slug}-{property}', [DiscoveryPropertiesContoller::class, 'show'])->name('show')->where(
         [
@@ -44,6 +45,11 @@ Route::prefix('biens')->name('property.')->group(function(){
             'property' => '[0-9]+'
         ]
     ) ; 
+}) ; 
+
+Route::prefix('demarcheurs/proprietaires')->name('demarcheurs')->group(function(){
+    Route::get('/', [DemarcheursController::class, 'index']) ; 
+    Route::get('/{user}', [DemarcheursController::class, 'show']) ;
 }) ; 
 
 
