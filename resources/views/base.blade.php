@@ -40,6 +40,8 @@
         </div>
     </header>
 
+    @include('shared.flash')
+
     <main>
         @yield('content')
     </main>

@@ -2,20 +2,39 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Http\Requests\SearchPropertyRequest;
 use App\Models\Admin\Property;
+use App\Models\City;
 use Illuminate\Http\Request;
 
 class DiscoveryPropertiesContoller extends Controller
 {
-    public function index() {
+    public function index(SearchPropertyRequest $request) {
 
-        $properties = Property::query() ; 
+        $query = Property::query() ; 
+        $data = $request->validated() ; 
 
-        $properties = $properties->paginate(25) ; 
+        if ($request->filled('price')) {
+            $query = $query->where('price', '<=', $data['price']) ; 
+        }
+        if ($request->filled('city')) {
+            $query = $query->where('city_id', $data['city']) ; 
+        }
+        if ($request->filled('neighborhood')) {
+            $query = $query->where('neighborhood', 'like', "%{$data['neighborhood']}%") ; 
+        }
+        if ($request->filled('title')) {
+            $query = $query->where('title', 'like', "%{$data['title']}%" ) ; 
+        }
+
+        $properties = $query->paginate(25) ; 
 
         
         return view('properties.index', [
-            'properties' => $properties
+            'properties' => $properties,
+            'cities' => City::pluck('name_city', 'id'),
+            'values' => $data
         ]) ; 
 
     }
