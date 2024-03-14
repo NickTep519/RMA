@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\SpecificityController;
-use App\Http\Controllers\DemarcheursController;
+use App\Http\Controllers\ManagersController;
 use App\Http\Controllers\DiscoveryPropertiesContoller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -47,10 +47,11 @@ Route::prefix('properties')->name('properties.')->group(function(){
     ) ; 
 }) ;  
 
-Route::prefix('managers')->name('demarcheurs.')->group(function(){
-    Route::get('/', [DemarcheursController::class, 'index'])->name('index') ; 
-    Route::get('/{user}', [DemarcheursController::class, 'show'])->name('show') ;
+Route::prefix('managers')->name('managers.')->group(function(){
+    Route::get('/', [ManagersController::class, 'index'])->name('index') ; 
+    Route::get('/{user}', [ManagersController::class, 'show'])->name('show') ;
 }) ; 
+
 
 
 require __DIR__.'/auth.php';

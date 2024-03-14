@@ -9,7 +9,7 @@
 
 <section class="filters">
     <h2>Filtres</h2>
-    <form action="{{route('demarcheurs.index')}}" method="GET">
+    <form action="{{route('managers.index')}}" method="GET">
         <input type="text" name="user" placeholder="Trouver un gestionnaire de bien" value="{{$values['user']?? ''}}">
 
         <button type="submit" class="btn btn-primary">Rechercher</button>
@@ -23,10 +23,10 @@
     @forelse ($users as $user)
     <div class="manager-card">
         <div class="profile-picture">
-            <a href="{{route('demarcheurs.show', $user)}}"><img src="path/to/profile_picture1.jpg" alt="Photo de profil"></a>
+            <a href="{{route('managers.show', $user)}}"><img src="path/to/profile_picture1.jpg" alt="Photo de profil"></a>
         </div>
     
-        <a href="{{route('demarcheurs.show', $user)}}"><h2>{{$user->name}}</h2></a>
+        <a href="{{route('managers.show', $user)}}"><h2>{{$user->name}}</h2></a>
     
         <p class="biography">Biographie du gestionnaire de biens. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit, odio sit amet mollis mollis.{{$user->biography}}</p>
 

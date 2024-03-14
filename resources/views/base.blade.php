@@ -16,7 +16,7 @@
         <nav>
             <ul>
                 <li><a href="{{route('properties.index')}}">Trouver un bien</a></li>
-                <li><a href="{{route('demarcheurs.index')}}">Trouver un gestionnaire de bien</a></li>
+                <li><a href="{{route('managers.index')}}">Trouver un gestionnaire de bien</a></li>
             </ul>
         </nav>
 

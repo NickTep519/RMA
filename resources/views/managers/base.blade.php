@@ -16,7 +16,7 @@
         <nav>
             <ul>
                 <li><a href="{{route('dashboard')}}">Vos Biens</a></li>
-                <li><a href="{{route('demarcheurs.index')}}">Vos Locataires</a></li>
+                <li><a href="{{route('managers.index')}}">Vos Locataires</a></li>
             </ul>
         </nav>
 

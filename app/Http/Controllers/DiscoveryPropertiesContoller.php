@@ -41,7 +41,10 @@ class DiscoveryPropertiesContoller extends Controller
     }
 
 
-    public function show() {
+    public function show(string $slug, Property $property ) {
 
+        return view('properties.show', [
+            'property' => $property
+        ]) ; 
     }
 }
