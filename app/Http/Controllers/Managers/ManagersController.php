@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Managers ;
 
+use App\Http\Controllers\Controller;
 use App\Models\Admin\Property;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,11 +17,9 @@ class ManagersController extends Controller
         if ($request->filled('user')) {
             $users->where('name', 'like', "%{$request->user}%") ; 
         }
-        if (Auth::check()) {
-            $user_id = Auth::id() ; 
-            $users->where('id', '!=', $user_id) ; 
-        }
+
         $users = $users->paginate(7) ; 
+        
         return view('managers.index', [
             'users'=> $users
         ]) ; 

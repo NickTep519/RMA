@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Properties;
 
-
+use App\Http\Controllers\Controller;
 use App\Http\Requests\SearchPropertyRequest;
 use App\Models\Admin\Property;
 use App\Models\City;

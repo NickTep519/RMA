@@ -4,7 +4,7 @@
 
 @vite(['resources/css/base.css','resources/css/profile.css','resources/js/app.js'])
 
-@extends('demarcheurs.base')
+@extends('managers.base')
 
 @section('title', $title)
 
@@ -50,7 +50,7 @@
 
                 <h2>Listing de vos biens</h2>
 
-                <a href="{{route('admin.properties.create')}}">
+                <a href="{{route('managers.property.create')}}">
                     <button class="add-properti-button">Ajouter un bien</button>
                 </a>
 
@@ -62,11 +62,11 @@
                         <p class="properti-description">{{ $property->description }}</p>
 
                         <div class="properti-buttons">
-                            <a href="{{route('admin.properties.edit', $property)}}">
+                            <a href="{{route('managers.property.edit', $property)}}">
                                 <button class="edit-properti-button">Modifier</button>
                             </a>
 
-                            <form action="{{route('admin.properties.destroy', $property)}}" method="POST">
+                            <form action="{{route('managers.property.destroy', $property)}}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <button class="delete-properti-button">Supprimer</button>

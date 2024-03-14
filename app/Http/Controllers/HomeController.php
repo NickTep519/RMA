@@ -12,6 +12,7 @@ class HomeController extends Controller
         //$properties = Property::with('city')->orderBy('created_at', 'desc')->limit(9)->get() ; 
         $properties = Property::with('city')->where('sold', false)->inRandomOrder()->take(9)->orderBy('created_at', 'desc')->get() ; 
 
+
         return view('home', [
             'properties' => $properties
         ]) ; 

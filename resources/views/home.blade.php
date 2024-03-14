@@ -10,7 +10,7 @@
     <a href="{{route('properties.index')}}" class="bouton bouton-primary">Commencer</a>
 </section>
 
-<h2>Les derniers biens</h2>
+<h2>Quelques biens disponibles</h2>
 
 <section class="property-cards">
     

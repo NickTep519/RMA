@@ -1,10 +1,10 @@
-@extends('admin.base')
+@extends('managers.base')
 
 @section('title', $property->exists ? 'Modifier un bien': 'Ajouter un bien')
 
 @section('content')
 
-<form action="{{route($property->exists ? 'admin.properties.update' : 'admin.properties.store', $property)}}" method="post"> 
+<form action="{{route($property->exists ? 'managers.property.update' : 'managers.property.store', $property)}}" method="post"> 
     @csrf
     @method($property->exsits ? 'put' : 'post')
 
@@ -28,6 +28,5 @@
         @endif
     </button>
 </form>
-    
     
 @endsection

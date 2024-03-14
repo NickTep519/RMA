@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Managers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PropertyFormRequest;
@@ -12,21 +12,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //$user_id = Auth::user()->id ; 
-
-        return view('admin.properties.index', [
-            'properties' => Property::orderBy('created_at', 'desc')->with('city')->paginate(16)
-        ]) ; 
-    }
 
     /**
      * Show the form for creating a new resource.
      */
+
     public function create()
     {
         $property = new Property() ; 
@@ -43,7 +33,7 @@ class PropertyController extends Controller
             'sold' => false
         ]) ; 
 
-        return view('admin.properties.form', [
+        return view('managers.properties.form', [
             'property' => $property,
             'specificities' => Specificity::pluck('name_speci', 'id'),
             'cities' => City::pluck('name_city', 'id')
@@ -77,7 +67,7 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        return view('admin.properties.form', [
+        return view('managers.properties.form', [
             'property' => $property,
             'specificities' => Specificity::pluck('name_speci', 'id'),
             'cities' => City::pluck('name_city', 'id')

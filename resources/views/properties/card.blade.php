@@ -11,7 +11,7 @@
     <div class="property-actions">
         <!-- La miniature de l'agent immobilier -->
         <div class="agent-thumbnail">
-            <a href="{{route('demarcheurs.show', $property->user_id)}}">
+            <a href="{{route('managers.show', $property->user_id)}}">
                 <img src="path/to/agent-thumbnail.jpg" alt="Agent Thumbnail">
             </a>
         </div>
