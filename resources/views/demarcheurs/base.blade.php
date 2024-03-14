@@ -6,7 +6,7 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" type="text/css" href="path/to/your/custom/style.css"/>
 
-    @vite(['resources/css/base.css','resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/base.css','resources/css/app.css','resources/css/ongle.css', 'resources/js/app.js', 'resources/js/onglets.js'])
 </head>
 <body>
     <header>
@@ -15,8 +15,8 @@
         </div>
         <nav>
             <ul>
-                <li><a href="{{route('properties.index')}}">Trouver un bien</a></li>
-                <li><a href="{{route('demarcheurs.index')}}">Trouver un gestionnaire de bien</a></li>
+                <li><a href="{{route('dashboard')}}">Vos Biens</a></li>
+                <li><a href="{{route('demarcheurs.index')}}">Vos Locataires</a></li>
             </ul>
         </nav>
 

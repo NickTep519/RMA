@@ -9,7 +9,6 @@
         <h2>Filtres</h2>
         <form action="{{route('properties.index')}}" method="GET">
             <input type="number" name="price" placeholder="Budget Max" value="{{$values['price']?? ''}}">
-            <!--<label for="budget">Budget Maximal</label>-->
 
             <select name="city">
                 <option value="">Ville</option>
@@ -17,13 +16,10 @@
                     <option value="{{$k}}">{{$v}}</option>
                 @endforeach
             </select>
-            <!--<label for="city">Ville</label>-->
 
             <input type="text" name="neighborhood" placeholder="Quartier" value="{{$values['neighborhood']?? ''}}">
-            <!--<label for="quartier">Quartier</label>-->
 
             <input type="text" name="title" placeholder="Type de Bien" value="{{$values['title']?? ''}}">
-            <!--<label for="title">Type de Bien</label>-->
 
             <button type="submit" class="btn btn-primary">Filtrer</button>
         </form>

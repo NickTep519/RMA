@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SearchPropertyRequest;
 use App\Models\Admin\Property;
 use App\Models\City;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DiscoveryPropertiesContoller extends Controller
@@ -15,7 +16,7 @@ class DiscoveryPropertiesContoller extends Controller
         $query = Property::query() ; 
         $data = $request->validated() ; 
 
-        if ($request->filled('price')) {
+        if($request->filled('price')) {
             $query = $query->where('price', '<=', $data['price']) ; 
         }
         if ($request->filled('city')) {

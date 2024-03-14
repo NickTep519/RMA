@@ -95,7 +95,7 @@ h2 {
     color: #333;
 }
 
-/*Style du Card*/
+/*Card*/
 
 .property-cards {
     display: flex;
@@ -189,22 +189,28 @@ h2 {
 }
 
 
-/* Style du Message Flash */
+/* Message Flash */
 .flash-message {
-    display: none;
     padding: 15px;
     border-radius: 5px;
     margin: 15px 0;
     text-align: center;
     font-weight: bold;
+    font-size: 16px;
+    width: 510px;
 }
 
-/* Style pour le Message Flash de Succès */
+/* Message Flash de Succès */
 .flash-message.success {
-    background-color: #4CAF50; /* Couleur verte */
-    color: white;
+    background-color: #4CAF50; 
+    color: white ;
 }
 
+.flash-message.error {
+    background-color: #f00f0f;
+    color: white;
+    
+}
 
 footer {
     background-color: #333;
@@ -213,8 +219,10 @@ footer {
     padding: 10px;
     position: relative;
     bottom: 0;
-    width: 100%;
-    margin-top: 5px; /* Ajoute de l'espace en haut du pied de la page */
+    width: 100% ;
+    margin-top: 5px;  
+    clear: both;
+
 }
 
 @media screen and (max-width: 425px) {

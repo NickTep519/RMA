@@ -1,0 +1,230 @@
+/* Styles pour la sidebar */
+.sidebar {
+    width: 400px;
+    height: 100%;
+    background-color: #f2f2f2;
+    padding: 20px;
+    float: left;
+    word-wrap: break-word;
+}
+
+/* Styles pour le contenu principal */
+.main-content {
+    margin-left: 100px; /* Pour laisser de l'espace à la sidebar */
+    padding: 20px;
+}
+
+.main-content h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Styles pour la photo de profil */
+.profile-picture {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%; /* Pour une forme circulaire */
+    background-color: #ccc; /* Couleur de fond de remplacement */
+    margin-bottom: 20px;
+}
+
+.user-name {
+    color: #333;
+    text-decoration: none;
+}
+
+.biography {
+    height: 100px;  /*Limite la hauteur de la biographie */
+    overflow: hidden;
+    text-overflow: ellipsis ;
+}
+
+.edit-profile-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Styles pour les liens de contact */
+
+.contact-links {
+    margin-top: 20px;
+}
+
+.contact-link {
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.contact-link:hover {
+    background-color: #333;
+    color: white;
+}
+
+
+
+.properti-list {
+    margin-left: 320px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Styles pour chaque card de bien immobilier */
+.properti-card {
+    width: calc(50% - 20px);
+    margin: 10px;
+    padding: 15px;
+    background-color: #fff;
+    border: 2px solid #ddd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.properti-card a {
+    text-decoration: none;
+}
+.properti-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles pour le titre du bien immobilier */
+.properti-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.properti-description {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.add-properti-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.add-properti-button:hover {
+    background-color: #555;
+}
+
+.properti-buttons{
+    margin-top: 10px;
+    display: flex;
+}
+
+.edit-properti-button, .delete-properti-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 15px;
+    margin-top: 20px;
+}
+
+.edit-properti-button:hover, .delete-properti-button:hover {
+    background-color: #555;
+}
+/*.properti-photos {
+    /* Styles pour les photos si nécessaire 
+}*/
+
+/* Styles pour les actualités sur l'immobilier */
+
+.real-estate-news {
+    margin-left: 320px;
+}
+
+.news-card {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.news-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.news-card p {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #666;
+}
+/* Media Query pour la responsivité */
+
+@media screen and (max-width: 768px){
+
+    /* Ajoute ces propriétés pour la sidebar */
+    .container {
+        margin: 0px;
+        padding: 0px;
+        /*width: 100%;*/
+    }
+
+    .main-content {
+        margin: 0px;
+        padding: 0px;
+    }
+    .sidebar {
+        width: 100%; /* Occupera toute la largeur sur les petits écrans */
+        text-align: center; /* Centrer le contenu */
+        margin: 0;
+        height: 450px;
+    }
+
+    .profile-picture {
+        width: 100px; /* Réduire la taille de la photo de profil */
+        height: 100px;
+        border-radius: 50%; /* Rendre la photo de profil circulaire */
+        margin: 0 auto 20px; /* Centrer la photo de profil et ajouter un espace en bas */
+    }
+
+    /* Ajoute ces propriétés pour la liste des biens */
+
+    .properti-list{
+        margin-left: 0; /* Réinitialise la marge à gauche */
+        /*display: flex;  Utilise Flexbox pour centrer le contenu */
+        /*justify-content: center;  Centrer horizontalement */
+        /*flex-wrap: wrap;  Pour gérer les biens sur plusieurs lignes si nécessaire */
+    }
+   
+    .real-estate-news {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+    .properti-card {
+        width: 100%; /* Occupera toute la largeur */
+        margin: 0 auto 20px; /* Centrer la card et ajouter un espace en bas */
+    } 
+
+    /* Ajoute ces propriétés pour les boutons de modification/suppression */
+    .properti-buttons {
+        display: flex; /* Afficher les boutons de modification et suppression en ligne */
+        justify-content: center; /* Centrer les boutons horizontalement */
+    }
+}

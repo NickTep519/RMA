@@ -110,6 +110,6 @@ class PropertyController extends Controller
     {
         $property->delete() ; 
 
-        return to_route('admin.properties.index')->with('success', 'Le bien a été bien supprimé') ; 
+        return to_route('dashboard')->with('success', 'Le bien a été bien supprimé') ; 
     }
 }
