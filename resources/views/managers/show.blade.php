@@ -1,4 +1,4 @@
-@vite(['resources/css/base.css','resources/css/profile.css', 'resources/js/app.js'])
+@vite(['resources/css/base.css','resources/css/profile.css'])
 
 @php
     $title = 'RMA-'. $user->name ; 

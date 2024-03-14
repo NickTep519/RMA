@@ -1,4 +1,4 @@
-@vite(['resources/css/gestionnaire.css','resources/css/app.css', 'resources/js/app.js'])
+@vite(['resources/css/managers.css'])
 
 @extends('base')
 
@@ -21,31 +21,9 @@
 <div class="manager-cards">
     
     @forelse ($users as $user)
-    <div class="manager-card">
-        <div class="profile-picture">
-            <a href="{{route('managers.show', $user)}}"><img src="path/to/profile_picture1.jpg" alt="Photo de profil"></a>
-        </div>
-    
-        <a href="{{route('managers.show', $user)}}"><h2>{{$user->name}}</h2></a>
-    
-        <p class="biography">Biographie du gestionnaire de biens. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit, odio sit amet mollis mollis.{{$user->biography}}</p>
-
-        <div class="rating">
-            <span>&#9733;</span>
-            <span>&#9733;</span>
-            <span>&#9733;</span>
-            <span>&#9733;</span>
-            <span>&#9733;</span>
-        </div>
-
-        <div class="real-time-rating">
-            <span>&#9733;</span>
-        </div>
-    </div> 
+        @include('managers.card', ['user'=> $user])
     @empty
-        <div class="flash-message success">
-            <p>Aucun résultat ne correspond à votre recherche </p>
-        </div>
+        @include('shared.flash-info', ['info'=>'Aucun résultat ne correspond à votre recherche'])
     @endforelse
 
 </div>    

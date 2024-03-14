@@ -79,9 +79,13 @@
                         </div>
                     </div> 
                 @empty
-                    <div class="flash-message success">
-                        <p>Salut, {{$user->name}} ! Vos biens s'afficherons ici !</p>
-                    </div>
+                    
+                    @php
+                        $info = 'Salut, '.$user->name.' ! Vos biens s\'afficherons ici !'
+                    @endphp
+
+                    @include('shared.flash-info', ['info'=>$info])
+
                 @endforelse
         
                 </section>

@@ -29,10 +29,10 @@ Route::middleware('auth')->name('profile.')->group(function () {
 });  
 
 Route::prefix('managers')->name('managers.')->group(function(){
+    Route::get('/', [ManagersController::class, 'index'])->name('index') ; 
+    Route::get('/{user}', [ManagersController::class, 'show'])->name('show') ;
     Route::resource('property', PropertyController::class)->except(['show', 'index'])->middleware('auth') ;
     Route::resource('specificity', SpecificityController::class)->except(['show', 'index'])->middleware('auth') ; 
-    Route::get('/{user}', [ManagersController::class, 'show'])->name('show') ;
-    Route::get('/', [ManagersController::class, 'index'])->name('index') ; 
 }) ; 
 
 Route::get('/', [HomeController::class, 'home'])->name('home.index') ;

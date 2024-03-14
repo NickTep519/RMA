@@ -206,6 +206,11 @@ h2 {
     color: white ;
 }
 
+.flash-message.info {
+    background-color: #333; 
+    color: white ;
+} 
+
 .flash-message.error {
     background-color: #f00f0f;
     color: white;
@@ -217,8 +222,8 @@ footer {
     color: white ;
     text-align: center;
     padding: 10px;
-    position: relative;
-    bottom: 0;
+    position: absolute;
+    margin-bottom: 0;
     width: 100% ;
     margin-top: 5px;  
     clear: both;

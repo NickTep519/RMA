@@ -1,6 +1,10 @@
+@php
+    $title = 'RMA-'.$property->title ; 
+@endphp
+
 @extends('base')
 
-@section('title', $property->title)
+@section('title', $title)
 
 @section('content')
         

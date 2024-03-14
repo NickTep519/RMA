@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('title', 'Les biens disponibles')
+@section('title', 'RMA-Biens Disponibles')
     
 
 @section('content')
@@ -30,7 +30,7 @@
         @forelse ($properties as $property)
             @include('properties.card')
         @empty
-            <p>Aucun bien ne correspond à votre recherche</p>
+            @include('shared.flash-info', ['info'=>'Aucun ne correspond à votre recherche'])
         @endforelse
     </section>
 

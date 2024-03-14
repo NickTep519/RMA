@@ -18,7 +18,7 @@ class ManagersController extends Controller
             $users->where('name', 'like', "%{$request->user}%") ; 
         }
 
-        $users = $users->paginate(7) ; 
+        $users = $users->paginate(12) ; 
         
         return view('managers.index', [
             'users'=> $users
