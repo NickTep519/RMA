@@ -3,6 +3,7 @@
 @php
     $title = 'RMA-'. $user->name ; 
 @endphp
+
 @extends('base')
 
 @section('title', $title)

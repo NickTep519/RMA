@@ -11,7 +11,7 @@
 /* Styles pour le contenu principal */
 .main-content {
     margin-left: 100px; /* Pour laisser de l'espace à la sidebar */
-    padding: 20px;
+    padding: 10px;
 }
 
 .main-content h2 {

@@ -24,7 +24,7 @@ class ProfileController extends Controller
         $properties = Property::query()->where('user_id', $user_id)->paginate(5) ; 
         $tenant = Tenant::query()->where('user_id', $user_id)->with('property')->get() ; 
 
-        return view('dashboard', [
+        return view('dashboard.dashboard', [
             'user'=> Auth::user(),
             'properties'=> $properties, 
             'tenant' => $tenant
