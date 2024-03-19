@@ -3,6 +3,7 @@
     $months = ['Janvier','Fevier','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Decembre'] ; 
 @endphp
 
+@vite(['resources/css/dashboard.css'])
 
 @extends('managers.base')
 
@@ -10,16 +11,17 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="content">
                                         
                             <!-- Sidebar Profil User-->
-
         <aside class="sidebar">
     
-            <div class="profile-picture">
-                <img src="{{ asset('path/to/profile_picture.jpg') }}" alt="Photo de profil RMA">
+            <div class="banniaire">
+                <div class="profile-picture">
+                    <img src="{{ asset('path/to/profile_picture.jpg') }}" alt="Photo de profil RMA">
+                </div>
             </div>
-        
+                
             <a href="{{route('dashboard')}}" class="user-name">
                 <h2>{{ $user->name }}</h2>
             </a>
@@ -29,7 +31,7 @@
             </div>
     
             <div class="biography">
-                <p>{{ $user->biography }}</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis tempora voluptate dolor vitae expedita alias corporis odio numquam id obcaecati repellat laudantium deserunt incidunt, fugiat illum a, natus molestias commodi!{{ $user->biography }}</p>
             </div>
         
             <a href="#" class="edit-profile-button">Éditer votre profil</a>
@@ -51,8 +53,6 @@
                                                 <!--Les biens-->
 
             <div id="contenu-general" class="tabcontent active" >
-
-                <h2>Listing de vos biens</h2>
 
                 <a href="{{route('managers.property.create')}}">
                     <button class="add-properti-button">Ajouter un bien</button>

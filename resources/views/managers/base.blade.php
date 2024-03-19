@@ -6,7 +6,7 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" type="text/css" href="path/to/your/custom/style.css"/>
 
-    @vite(['resources/css/base.css','resources/css/profile.css','resources/css/onglets.css', 'resources/js/app.js'])
+    @vite(['resources/css/base.css','resources/js/app.js'])
 </head>
 <body>
     <header>
@@ -105,6 +105,6 @@ function openSubSubTab(evt, subSubTabName) {
     evt.currentTarget.className += " active";
 }
 
-    </script>
+</script>
 </body>
 </html>

@@ -21,7 +21,7 @@ class ProfileController extends Controller
     public function index() : View
     {
         $user_id = Auth::user()->id ; 
-        $properties = Property::query()->where('user_id', $user_id)->paginate(5) ; 
+        $properties = Property::query()->where('user_id', $user_id)->paginate(4) ; 
         $tenant = Tenant::query()->where('user_id', $user_id)->with('property')->get() ; 
 
         return view('dashboard.dashboard', [

@@ -1,0 +1,325 @@
+.content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    
+}
+
+.sidebar {
+    background-color: #f2f2f2;
+    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center ;
+    align-items: center ;
+    width: 25%;
+}
+
+.main-content {
+    width: 75%;
+}
+
+.main-content h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/*.banniaire {
+    background-color: aqua;
+}*/
+
+.profile-picture {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%; 
+    background-color: #ccc; 
+    margin-bottom: 20px;
+}
+
+.user-name {
+    color: #333;
+    text-decoration: none;
+    
+}
+
+.biography {  
+    padding: 15px;
+    justify-content: center;
+}
+
+.edit-profile-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+
+.contact-links {
+    margin-top: 20px;
+}
+
+.contact-link {
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.contact-link:hover {
+    background-color: #333;
+    color: white;
+}
+
+
+.properti-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+.properti-card {
+    width: calc(50% - 20px);
+    margin: 10px;
+    padding: 15px;
+    background-color: #fff;
+    border: 2px solid #ddd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.properti-card a {
+    text-decoration: none;
+}
+.properti-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.properti-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.properti-description {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.add-properti-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.add-properti-button:hover {
+    background-color: #555;
+}
+
+.properti-buttons{
+    margin-top: 10px;
+    display: flex;
+}
+
+.edit-properti-button, .delete-properti-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 15px;
+    margin-top: 20px;
+}
+
+.edit-properti-button:hover, .delete-properti-button:hover {
+    background-color: #555;
+}
+
+.news-card {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.news-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.news-card p {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+                    /********** Les Onglets   ********/
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+}
+
+.tablinks {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 15px 50px;
+    transition: background-color 0.3s;
+    width: 50%;
+}
+
+.tablinks.active {
+    background-color: #ddd;
+    border-bottom: 5px solid  #333;
+}
+
+.tablinks:hover {
+    background-color: #ddd;
+}
+
+.tabcontent {
+    display: none;
+    padding: 20px;
+    border-top: none;
+}
+
+.tabcontent.active {
+    display: block;
+}
+
+                                    /***** Sub ****/
+.subtablinks {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: background-color 0.3s;
+}
+
+.subtablinks:hover {
+    background-color: #ddd;
+}
+
+
+.subtabcontent {
+    display: none;
+    padding: 20px;
+    border-top: none;
+}
+
+
+.subtabcontent.active {
+    display: block;
+    border-bottom: 5px solid  #333;
+}
+
+
+                            /******* SubSub  *******/
+
+.subsubtablinks {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: background-color 0.3s;
+}
+
+.subsubtablinks:hover {
+    background-color: #ddd;
+}
+
+/* Style pour le contenu des onglets */
+.subsubtabcontent {
+    display: none;
+    padding: 20px;
+    border-top: none;
+}
+
+/* Afficher le contenu de l'onglet actif */
+.subsubtabcontent.active {
+    display: block;
+    border-bottom: 5px solid  #333;
+}
+
+
+/* Media Query pour la responsivité */
+
+
+@media (max-width: 1300px ){
+
+    .profile-picture {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 1060px){
+    .profile-picture {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 880px){
+    
+    .content{
+        flex-direction: column;
+    }   
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .main-content {
+        width: 100%;
+    }
+
+    .profile-picture {
+        width: 250px;
+        height: 250px;
+    }
+
+}
+
+@media (max-width: 700px){
+
+    .properti-list {
+        flex-direction: column;
+        align-items: center;
+    }   
+
+    .properti-card {
+        width: 100%;
+    }
+
+}
