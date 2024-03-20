@@ -187,6 +187,7 @@
 .tablinks {
     background-color: inherit;
     border: none;
+    font-weight: bold;
     outline: none;
     cursor: pointer;
     padding: 15px 50px;
@@ -214,65 +215,80 @@
 }
 
                                     /***** Sub ****/
+.subtabs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+                                    
+}
+                                    
 .subtablinks {
     background-color: inherit;
-    float: left;
     border: none;
+    font-weight: bold;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 15px 50px;
     transition: background-color 0.3s;
 }
-
+                                    
+.subtablinks.active {
+    background-color: #ddd;
+    border-bottom: 5px solid  #333;
+}
+                                    
 .subtablinks:hover {
     background-color: #ddd;
 }
-
-
+                                    
 .subtabcontent {
     display: none;
     padding: 20px;
     border-top: none;
 }
-
-
+                                    
 .subtabcontent.active {
     display: block;
-    border-bottom: 5px solid  #333;
 }
 
-
-                            /******* SubSub  *******/
-
+                        /****** SubSub ******/               
+.subsubtabs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+                                    
+}
+                                    
 .subsubtablinks {
     background-color: inherit;
-    float: left;
     border: none;
+    font-weight: bold;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 15px 50px;
     transition: background-color 0.3s;
 }
-
+                                    
+.subsubtablinks.active {
+    background-color: #ddd;
+    border-bottom: 5px solid  #333;
+}
+                                    
 .subsubtablinks:hover {
     background-color: #ddd;
 }
-
-/* Style pour le contenu des onglets */
+                                    
 .subsubtabcontent {
     display: none;
     padding: 20px;
     border-top: none;
 }
-
-/* Afficher le contenu de l'onglet actif */
+                                    
 .subsubtabcontent.active {
     display: block;
-    border-bottom: 5px solid  #333;
 }
-
-
-/* Media Query pour la responsivité */
 
 
 @media (max-width: 1300px ){

@@ -68,10 +68,8 @@ function openTab(evt, tabName) {
 
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
+    document.getElementById("defaultOpen").click();
 }
-
-
-document.getElementById("defaultOpen").click();
 
 function openSubTab(evt, subTabName) {
     
@@ -88,6 +86,8 @@ function openSubTab(evt, subTabName) {
 
     document.getElementById(subTabName).style.display = "block";
     evt.currentTarget.className += " active";
+    document.getElementById("defaultOpen").click();
+
 }
 
 function openSubSubTab(evt, subSubTabName) {
@@ -103,6 +103,8 @@ function openSubSubTab(evt, subSubTabName) {
 
     document.getElementById(subSubTabName).style.display = "block";
     evt.currentTarget.className += " active";
+    document.getElementById("defaultOpen").click();
+
 }
 
 </script>

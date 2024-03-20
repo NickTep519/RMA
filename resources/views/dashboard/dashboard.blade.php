@@ -81,29 +81,36 @@
             <div id="gestion-locataires" class="tabcontent">
         
                 <div class="subtabs">
-                    <button class="subtablinks" onclick="openSubTab(event, '2024')">2024</button>
+                    <button class="subtablinks active" onclick="openSubTab(event, '2024')">2024</button>
                     <button class="subtablinks" onclick="openSubTab(event, '2025')">2025</button>
                 </div>
 
                 <div id="2024" class="subtabcontent active">
-                    @foreach ($months as $month)
-                        <div class="subsubtabs">
-                            <button class="subsubtablinks" onclick="openSubSubTab(event, $month)">{{$month}}</button>
-                        </div>
-                    @endforeach
+                    <div class="subsubtabs">
+                        <button class="subsubtablinks active" onclick="openSubSubTab(event, 'Janvier')">Janvier</button>
+                        <button class="subsubtablinks" onclick="openSubSubTab(event, 'Fevrier')">Février</button>
+                    </div>
                     
-                    @foreach ($months as $month)
-                        <div id="{{$month}}" class="subsubtabcontent">
-                            <h1>{{$month}}</h1>
-                        </div>    
-                    @endforeach
-                    
+                    <div id="Janvier" class="subsubtabcontent active">
+                        <h1>Janvier</h1>
+                    </div> 
+                    <div id="Fevrier" class="subsubtabcontent">
+                        <h1>Février</h1>
+                    </div>    
                 </div>
+
                 <div id="2025" class="subtabcontent">
-                    @foreach ($months as $month)
-                        <button class="subsubtablinks" onclick="openSubSubTab(event, $month)">{{$month}}</button>
-                    @endforeach
-                    <h1>Anneé 2025</h1>
+                    <div class="subsubtabs">
+                        <button class="subsubtablinks active" onclick="openSubSubTab(event, 'Janvier')">Janvier</button>
+                        <button class="subsubtablinks" onclick="openSubSubTab(event, 'Fevrier')">Février</button>
+                    </div>
+                    
+                    <div id="Janvier" class="subsubtabcontent active">
+                        <h1>Janvier</h1>
+                    </div> 
+                    <div id="Fevrier" class="subsubtabcontent">
+                        <h1>Février</h1>
+                    </div>    
                 </div>
             </div> 
         </main>
