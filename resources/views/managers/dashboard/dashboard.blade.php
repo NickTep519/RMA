@@ -1,6 +1,5 @@
 @php
     $title = 'RMA-'. $user->name ; 
-    $months = ['Janvier','Fevier','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Decembre'] ; 
 @endphp
 
 @vite(['resources/css/dashboard.css'])
@@ -43,15 +42,16 @@
             <hr>
 
         </aside>
+        
                             <!--Content sidebar-->
+
         <main class="main-content">
+            
             <div class="tabs">
                 <button class="tablinks active" onclick="openTab(event, 'contenu-general')">Vos Biens</button>
                 <button class="tablinks" onclick="openTab(event, 'gestion-locataires')">Gestion des Locataires</button>
-            </div>
-                                        
+            </div>                                        
                                                 <!--Les biens-->
-
             <div id="contenu-general" class="tabcontent active" >
 
                 <a href="{{route('managers.property.create')}}">
@@ -60,7 +60,7 @@
 
                 <section class="properti-list">
                     @forelse ($properties as $property)
-                        @include('dashboard.card-properties', ['property'=> $property])
+                        @include('managers.dashboard.card-properties', ['property'=> $property])
                     @empty
                         @php
                             $info = 'Salut, '.$user->name.' ! Vos biens s\'afficherons ici !'
@@ -72,46 +72,75 @@
                 {{$properties->appends(request()->query())->render()}}
             
                 <section class="real-estate-news">
-                    @include('dashboard.news-card')
+                    @include('managers.dashboard.news-card')
                 </section>
 
             </div>
                                                 <!--Gestion Des Locataires-->
 
-            <div id="gestion-locataires" class="tabcontent">
-        
+            <div id="gestion-locataires" class="tabcontent"> 
+                
                 <div class="subtabs">
-                    <button class="subtablinks active" onclick="openSubTab(event, '2024')">2024</button>
-                    <button class="subtablinks" onclick="openSubTab(event, '2025')">2025</button>
+                    <button class="subtablinks active" onclick="openSubTab(event, 'subtab24')">2024</button>
+                    <button class="subtablinks" onclick="openSubTab(event, 'subtab25')">2025</button>
                 </div>
 
-                <div id="2024" class="subtabcontent active">
+                <div id="subtab24" class="subtabcontent active">
+                    
                     <div class="subsubtabs">
-                        <button class="subsubtablinks active" onclick="openSubSubTab(event, 'Janvier')">Janvier</button>
+                        <button id="defaultOpen" class="subsubtablinks active" onclick="openSubSubTab(event, 'Janvier')">Janvier</button>
                         <button class="subsubtablinks" onclick="openSubSubTab(event, 'Fevrier')">Février</button>
+                        <button class="subsubtablinks" onclick="openSubSubTab(event, 'Mars')">Mars</button>
+                        <button class="subsubtablinks" onclick="openSubSubTab(event, 'Avril')">Avril</button>
+                        <button class="subsubtablinks" onclick="openSubSubTab(event, 'Mai')">Mai</button>
+                        <button class="subsubtablinks" onclick="openSubSubTab(event, 'Juin')">Juin</button>
+                        <button class="subsubtablinks" onclick="openSubSubTab(event, 'Juillet')">Juillet</button>
+                        <button class="subsubtablinks" onclick="openSubSubTab(event, 'Aout')">Août</button>
+                        <button class="subsubtablinks" onclick="openSubSubTab(event, 'Septembre')">Septembre</button>
+                        <button class="subsubtablinks" onclick="openSubSubTab(event, 'Octobre')">Octobre</button>
+                        <button class="subsubtablinks" onclick="openSubSubTab(event, 'Novembre')">Novembre</button>
+                        <button class="subsubtablinks" onclick="openSubSubTab(event, 'Decembre')">Décembre</button>
                     </div>
+
+                    <a href="#" class="edit-profile-button">Ajouter un Locataire</a>
                     
                     <div id="Janvier" class="subsubtabcontent active">
-                        <h1>Janvier</h1>
+                        <h2>Janvier</h2>
+                        @include('managers.dashboard.tab-tenants')
                     </div> 
+
                     <div id="Fevrier" class="subsubtabcontent">
-                        <h1>Février</h1>
+                        <h2>Février</h2>
+                        @include('managers.dashboard.tab-tenants')
+                    </div>
+
+                    <div id="Mars" class="subsubtabcontent">
+                        <h2>Mars</h2>
+                        @include('managers.dashboard.tab-tenants')
                     </div>    
                 </div>
 
-                <div id="2025" class="subtabcontent">
+                
+                <div id="subtab25" class="subtabcontent">
                     <div class="subsubtabs">
-                        <button class="subsubtablinks active" onclick="openSubSubTab(event, 'Janvier')">Janvier</button>
-                        <button class="subsubtablinks" onclick="openSubSubTab(event, 'Fevrier')">Février</button>
+                        <button class="subsubtablinks active" onclick="openSubSubTab(event, 'Janvier1')">Janvier</button>
+                        <button class="subsubtablinks" onclick="openSubSubTab(event, 'Fevrier1')">Février</button>
+                        <button class="subsubtablinks" onclick="openSubSubTab(event, 'Mars1')">Mars</button>
                     </div>
-                    
-                    <div id="Janvier" class="subsubtabcontent active">
+
+                    <a href="#" class="edit-profile-button">Ajouter un Locataire</a>
+
+                    <div id="Janvier1" class="subsubtabcontent active">
                         <h1>Janvier</h1>
                     </div> 
-                    <div id="Fevrier" class="subsubtabcontent">
+                    <div id="Fevrier1" class="subsubtabcontent">
                         <h1>Février</h1>
+                    </div>
+                    <div id="Mars1" class="subsubtabcontent">
+                        <h1>Mars</h1>
                     </div>    
                 </div>
+
             </div> 
         </main>
     </div>

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: stretch;
+    align-items:flex-start;
     
 }
 
@@ -19,6 +19,7 @@
 
 .main-content {
     width: 75%;
+    /*border: red solid 2px ;*/
 }
 
 .main-content h2 {
@@ -26,10 +27,6 @@
     color: #333;
     margin-bottom: 20px;
 }
-
-/*.banniaire {
-    background-color: aqua;
-}*/
 
 .profile-picture {
     width: 300px;
@@ -256,7 +253,7 @@
 .subsubtabs {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: flex-start;
                                     
 }
@@ -290,6 +287,44 @@
     display: block;
 }
 
+                /****** Table des locataires **********/
+
+.tableau {
+    width:  100%;
+    overflow-x: auto;
+    margin: 0;
+}
+.table-style {
+    border-collapse: collapse ;
+    width: 100% ;
+    box-shadow: 0 5px 50px rgba(0, 0, 0, 0.15) ; 
+    cursor:  pointer ;
+    border: 1px solid #333 ;
+    margin: 0 ;
+
+}
+
+thead tr {
+    background-color: #333;
+    text-align: left;
+    color: #fff;
+}
+
+th, td {
+    padding: 15px 20px;
+}
+
+tbody tr, td, th {
+    border: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type{
+    border-bottom:  2px solid #333;
+}
 
 @media (max-width: 1300px ){
 

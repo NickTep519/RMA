@@ -51,61 +51,62 @@
     </footer>
 
     <script>
-// Fonction pour ouvrir un onglet
+
 function openTab(evt, tabName) {
     
-    var i, tabcontent, tablinks;
+    var i, j, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
 
     tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    for (j = 0; j < tablinks.length; j++) {
+        tablinks[j].className = tablinks[j].className.replace(" active", "");
     }
-
 
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
-    document.getElementById("defaultOpen").click();
 }
+
+document.getElementById("defaultOpen").click();
+
 
 function openSubTab(evt, subTabName) {
     
-    var i, subtabcontent, subtablinks;
+    var i, j, subtabcontent, subtablinks;
     subtabcontent = document.getElementsByClassName("subtabcontent");
     for (i = 0; i < subtabcontent.length; i++) {
       subtabcontent[i].style.display = "none";
     }
 
-    var subtablinks = document.getElementsByClassName("subtablinks");
-    for (var i = 0; i < subtablinks.length; i++) {
-      subtablinks[i].className = subtablinks[i].className.replace(" active", "");
+    subtablinks = document.getElementsByClassName("subtablinks");
+    for (var j = 0; j < subtablinks.length; j++) {
+      subtablinks[j].className = subtablinks[j].className.replace(" active", "");
     }
 
     document.getElementById(subTabName).style.display = "block";
     evt.currentTarget.className += " active";
-    document.getElementById("defaultOpen").click();
 
 }
 
 function openSubSubTab(evt, subSubTabName) {
-    var subsubtabcontent = document.getElementsByClassName("subsubtabcontent");
-    for (var i = 0; i < subsubtabcontent.length; i++) {
+    var i, j, subsubtabcontent, subsubtablinks;
+    subsubtabcontent = document.getElementsByClassName("subsubtabcontent");
+    for (i = 0; i < subsubtabcontent.length; i++) {
       subsubtabcontent[i].style.display = "none";
     }
 
-    var subsubtablinks = document.getElementsByClassName("subsubtablinks");
-    for (var i = 0; i < subsubtablinks.length; i++) {
-      subsubtablinks[i].className = subsubtablinks[i].className.replace(" active", "");
+    subsubtablinks = document.getElementsByClassName("subsubtablinks");
+    for (var j = 0; j < subsubtablinks.length; j++) {
+      subsubtablinks[j].className = subsubtablinks[j].className.replace(" active", "");
     }
 
     document.getElementById(subSubTabName).style.display = "block";
     evt.currentTarget.className += " active";
-    document.getElementById("defaultOpen").click();
 
 }
+
 
 </script>
 </body>

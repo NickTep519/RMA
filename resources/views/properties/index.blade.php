@@ -32,6 +32,7 @@
         @empty
             @include('shared.flash-info', ['info'=>'Aucun ne correspond à votre recherche'])
         @endforelse
+        
     </section>
 
     {{$properties->appends(request()->query())->render()}}

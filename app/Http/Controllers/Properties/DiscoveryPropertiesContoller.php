@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 class DiscoveryPropertiesContoller extends Controller
 {
+    
     public function index(SearchPropertyRequest $request) {
 
         $query = Property::query() ; 
@@ -29,7 +30,7 @@ class DiscoveryPropertiesContoller extends Controller
             $query = $query->where('title', 'like', "%{$data['title']}%" ) ; 
         }
 
-        $properties = $query->paginate(25) ; 
+        $properties = $query->with('city')->paginate(25) ; 
 
         
         return view('properties.index', [
@@ -42,6 +43,8 @@ class DiscoveryPropertiesContoller extends Controller
 
 
     public function show(string $slug, Property $property ) {
+
+//        $property = $property->with('user')->get() ; 
 
         return view('properties.show', [
             'property' => $property

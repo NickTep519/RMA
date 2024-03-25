@@ -1,4 +1,4 @@
-@vite(['resources/css/base.css','resources/css/profile.css'])
+@vite(['resources/css/dashboard.css'])
 
 @php
     $title = 'RMA-'. $user->name ; 
@@ -10,7 +10,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="content">
 
     
     <aside class="sidebar">
@@ -44,50 +44,22 @@
         <h2>Listing de vos biens</h2>
 
         <section class="properti-list">
-
             @forelse ($properties as $property)
-                <div class="properti-card">
-                    <a href="{{route('properties.show', [$property->slug(), $property])}}">
-                        <h3 class="properti-title">{{ $property->title }}</h3>
-                    </a>
-                    <p class="properti-description">{{ $property->description }}</p>
-
-                    <div class="properti-buttons">
-                        <a href="{{route('properties.show', [$property->slug(), $property])}}">
-                            <button class="edit-properti-button">Plus...</button>
-                        </a>
-                    </div>
-                    
-                    <!-- Photos du bien immobilier -->
-                    <div class="properti-photos">
-                        <!-- Insérez vos photos ici -->
-                    </div>
-                </div> 
+                @include('dashboard.card-properties', ['property'=> $property])
             @empty
-            <div class="flash-message success">
-                <p>{{$user->name}} n'a pas encore de biens disponibles</p>
-            </div>
+                @php
+                    $info = 'Salut, '.$user->name.' ! Vos biens s\'afficherons ici !'
+                @endphp
+                @include('shared.flash-info', ['info'=>$info])
             @endforelse
-        
         </section>
 
-{{$properties->appends(request()->query())->render()}}
-
-        
-        <!-- Actualités sur l'immobilier -->
+        {{$properties->appends(request()->query())->render()}}
+    
         <section class="real-estate-news">
-            <!-- Card pour chaque actualité -->
-            
-                <div class="news-card">
-                    <h3>IMMO</h3>
-                    <p>Contenu de l'actualité 1</p>
-                </div>
-                <div class="news-card">
-                    <h3>IMMO</h3>
-                    <p>Contenu de l'actualité 2</p>
-                </div>
-        
+            @include('dashboard.news-card')
         </section>
+
     </main>
     </div>
 @endsection

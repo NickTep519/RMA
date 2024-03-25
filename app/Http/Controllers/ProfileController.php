@@ -22,12 +22,16 @@ class ProfileController extends Controller
     {
         $user_id = Auth::user()->id ; 
         $properties = Property::query()->where('user_id', $user_id)->paginate(4) ; 
-        $tenant = Tenant::query()->where('user_id', $user_id)->with('property')->get() ; 
+        $tenants = Tenant::query()->where('user_id', $user_id)->with('property')->get() ; 
 
-        return view('dashboard.dashboard', [
+        /*foreach ($properties as $property) {
+            dd($property->created_at->format('m')) ; 
+        }*/
+
+        return view('managers.dashboard.dashboard', [
             'user'=> Auth::user(),
             'properties'=> $properties, 
-            'tenant' => $tenant
+            'tenants' => $tenants
         ]) ; 
     }
 
