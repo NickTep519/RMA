@@ -6,6 +6,7 @@ use App\Http\Controllers\Managers\ManagersController;
 use App\Http\Controllers\Properties\DiscoveryPropertiesContoller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RatingCotroller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +47,8 @@ Route::prefix('properties')->name('properties.')->group(function() {
         ]  
     ) ; 
 }) ;  
+
+Route::post('/users/{user}/rate', [RatingCotroller::class, 'rateUser'])->name('rating') ; 
 
 
 require __DIR__.'/auth.php';

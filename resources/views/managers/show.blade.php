@@ -45,7 +45,7 @@
 
         <section class="properti-list">
             @forelse ($properties as $property)
-                @include('dashboard.card-properties', ['property'=> $property])
+                @include('managers.dashboard.card-properties', ['property'=> $property])
             @empty
                 @php
                     $info = 'Salut, '.$user->name.' ! Vos biens s\'afficherons ici !'
@@ -57,7 +57,7 @@
         {{$properties->appends(request()->query())->render()}}
     
         <section class="real-estate-news">
-            @include('dashboard.news-card')
+            @include('managers.dashboard.news-card')
         </section>
 
     </main>

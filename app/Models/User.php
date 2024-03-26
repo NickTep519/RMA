@@ -60,4 +60,9 @@ class User extends Authenticatable
     public function tenant() : HasOne {
         return $this->hasOne(Tenant::class) ; 
     }
+
+
+    public function rating() : HasOne {
+        return $this->hasOne(Rating::class) ; 
+    }
 }
