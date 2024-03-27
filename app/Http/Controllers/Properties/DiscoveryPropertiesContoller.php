@@ -30,7 +30,7 @@ class DiscoveryPropertiesContoller extends Controller
             $query = $query->where('title', 'like', "%{$data['title']}%" ) ; 
         }
 
-        $properties = $query->with('city')->paginate(25) ; 
+        $properties = $query->with(['city', 'user'])->paginate(25) ; 
 
         
         return view('properties.index', [

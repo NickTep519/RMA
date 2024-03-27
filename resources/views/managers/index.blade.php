@@ -11,7 +11,6 @@
     <h2>Filtres</h2>
     <form action="{{route('managers.index')}}" method="GET">
         <input type="text" name="user" placeholder="Trouver un gestionnaire de bien" value="{{$values['user']?? ''}}">
-
         <button type="submit" class="btn btn-primary">Rechercher</button>
     </form>
 </section>

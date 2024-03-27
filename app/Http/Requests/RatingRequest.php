@@ -22,7 +22,7 @@ class RatingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'rating' => ['required','integer', 'numeric', 'min:0']
+            'note' => ['required','integer', 'numeric', 'min:0']
         ];
     }
 }

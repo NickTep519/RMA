@@ -26,7 +26,13 @@
             </a>
     
             <div class="rating">
-                <!-- Système d'étoiles à ajouter ici -->
+                @for ($i = 1; $i <= 5; $i++)
+                    @if ($i <= $user->moyenne_rating)
+                        <span class="star filled">&#9733;</span>
+                    @else
+                        <span class="star">&#9733;</span>
+                    @endif
+                @endfor
             </div>
     
             <div class="biography">

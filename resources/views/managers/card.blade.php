@@ -8,11 +8,13 @@
     <p class="biography">Biographie du gestionnaire de biens. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit, odio sit amet mollis mollis.{{$user->biography}}</p>
 
     <div class="rating">
-        <span>&#9733;</span>
-        <span>&#9733;</span>
-        <span>&#9733;</span>
-        <span>&#9733;</span>
-        <span>&#9733;</span>
+        @for ($i = 1; $i <= 5; $i++)
+            @if ($i <= $user->moyenne_rating)
+                <span class="star filled">&#9733;</span>
+            @else
+                <span class="star">&#9733;</span>
+            @endif
+        @endfor
     </div>
 
     <div class="real-time-rating">

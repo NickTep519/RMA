@@ -6,7 +6,7 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" type="text/css" href="path/to/your/custom/style.css"/>
 
-    @vite(['resources/css/base.css','resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/base.css','resources/css/app.css','resources/css/rating.css', 'resources/js/app.js'])
 </head>
 <body>
     <header>
@@ -52,5 +52,57 @@
     <footer>
         <p>&copy; 2024 RMA (Recherche de Maison ou d'Appartement)</p>
     </footer>
+    <script>
+
+        const  stars = document.querySelectorAll('.stare') ; 
+        let check = false ; 
+
+        stars.forEach(stare => {
+            stare.addEventListener('mouseover', selectStars) ; 
+            stare.addEventListener('mouseleave', unselectStars) ; 
+            stare.addEventListener('click', activeSelect) ; 
+        })
+
+        function selectStars(e){
+            const data = e.target ; 
+            const etoiles = priviousSiblings(data) ; 
+
+            if (!check) {
+                    etoiles.forEach(etoile=>{
+                        etoile.classList.add('hover') ; 
+                }) ; 
+            }
+           
+        }
+
+        function unselectStars(e){
+            const data = e.target ; 
+            const etoiles = priviousSiblings(data) ; 
+
+            if (!check) {
+                    etoiles.forEach(etoile => {
+                        etoile.classList.remove('hover') ; 
+                }) ;  
+            }
+        }
+
+        function activeSelect(e) {
+            check = true ; 
+            const note = e.target.dataset.note ; 
+            document.getElementById('note').value = note ;
+            document.querySelector('.note').innerHTML+=' '+ note ; 
+        }
+
+        function priviousSiblings(data) {
+            let values = [data] ; 
+
+            while(data = data.previousSibling){
+                if (data.nodeName === 'I') {
+                    values.push(data) ; 
+                }
+            }
+            return values; 
+        }
+    </script>
 </body>
 </html>

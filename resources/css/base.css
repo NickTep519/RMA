@@ -108,7 +108,9 @@ h2 {
     margin: 10px;
     padding: 10px;
     width: 300px;
+    border-radius: 10px;
     transition: transform 0.3s ease-in-out;
+    background: #E7E6E3;
 }
 
 .property-card:hover {
@@ -122,17 +124,64 @@ h2 {
     margin-bottom: 10px;
 }
 
-.property-details {
-    margin-bottom: 10px;
-}
-
-.property-details p {
-    margin: 5px 0;
-}
-
 .property-actions {
-    text-align: center;
-    position: relative;
+    display: flex ;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.property-actions .user-big {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+}
+
+.property-actions .user-biography {
+    margin-top: 0;
+} 
+
+
+.agent-thumbnail {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden ;
+}
+
+.agent-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-big .user-name {
+    font-weight: bold;
+}
+
+.rating {
+    display: flex;
+}
+
+.star {
+    font-size: 20px;
+    color: black;
+    margin: 0 2px;
+}
+
+.star.filled {
+    color: red; 
+}
+
+.property-actions .user-biography {
+    margin-left: 40px;
+}
+
+.publish-time {
+    margin-top: 10px;
+    color: #888;
 }
 
 .property-actions a {
@@ -149,43 +198,40 @@ h2 {
     background-color: #555;
 }
 
-
-.agent-thumbnail {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    overflow: hidden;
-    /*color: black;*/
-}
-
-.agent-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.rating {
+.property-others {
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+.property-others a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.property-others a:hover {
+    background-color: #555;
+}
+
+.property-details {
+    margin-bottom: 10px;
+    border-radius: 25% 10% ;
+    padding: 10px 10px 10px 20px;
+    background: #F5F5DC;
+}
+
+.property-details p {
+    margin: 5px 0;
+}
+
+.property-details .title {
     justify-content: center;
-    margin-top: 10px;
-}
-
-.star {
-    font-size: 20px;
-    color: black;
-    margin: 0 2px;
-}
-
-.star.filled {
-    color: red; /* Couleur pour les étoiles remplies */
-}
-
-.publish-time {
-    margin-top: 10px;
-    color: #888;
+    padding-left: 15%;
 }
 
 
