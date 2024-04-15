@@ -27,7 +27,7 @@ Route::middleware('auth')->name('profile.')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('edit') ;
     Route::patch('/profile', [ProfileController::class, 'update'])->name('update') ;
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('destroy') ;
-});  
+}) ;  
 
 Route::prefix('managers')->name('managers.')->group(function(){
     Route::get('/', [ManagersController::class, 'index'])->name('index') ; 
@@ -51,4 +51,4 @@ Route::prefix('properties')->name('properties.')->group(function() {
 Route::post('/users/{user}/rate', [RatingCotroller::class, 'rateUser'])->name('rating') ; 
 
 
-require __DIR__.'/auth.php';
+require __DIR__.'/auth.php' ;

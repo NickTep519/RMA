@@ -1,9 +1,11 @@
+body {
+    font-family: Verdana, Tahoma, sans-serif ;
+}
 .content{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items:flex-start;
-    
 }
 
 .sidebar {

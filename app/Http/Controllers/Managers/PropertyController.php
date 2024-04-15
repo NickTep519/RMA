@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\PropertyFormRequest;
 use App\Models\Admin\Property;
 use App\Models\Admin\Specificity;
 use App\Models\City;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,20 +24,25 @@ class PropertyController extends Controller
 
         $property->fill([
             'title' => 'Titre du bien',
-            'description' => 'Plus de Detail sur le bien',
+            'description' => 'Detail sur le bien',
             'surface' => 10,
             'rooms'  => 1,
             'bedrooms' => 0,
             'floor' => 0,
             'price' => 8000,
-            'neighborhhod' => 'Tanpkè',
-            'sold' => false
+            'neighborhood' => 'Tanpkè',
+            'sold' => false,
+            'rent_advance' => 3,
+            'rent_prepaid'=> 3,
+            'cee'=> 50000,
+            'commission'=> 50000,
+            'visit_fees'=>3000
         ]) ; 
 
         return view('managers.properties.form', [
             'property' => $property,
-            'specificities' => Specificity::pluck('name_speci', 'id'),
-            'cities' => City::pluck('name_city', 'id')
+            'cities' => City::pluck('name_city', 'id'),
+            'images' => new Image()
         ]) ; 
     }
 
@@ -47,18 +53,16 @@ class PropertyController extends Controller
     {
         $user_id = Auth::user()->id ; 
         $datas = $request->validated() ; 
-        $data = collect($datas)->except(['specificities', 'city'])->all() ;  
+        $data = collect($datas)->except(['city'])->all() ;  
 
-        $property = Property::create($datas) ; 
+        $property = Property::create($data) ; 
 
         $city = City::find($datas['city']) ; 
         $property->city()->associate($city) ; 
         $property->user_id = $user_id ; 
         $property->save() ; 
 
-        $property->specificities()->sync($datas['specificities']) ; 
-
-        return to_route('admin.properties.index')->with('success', 'Le bien a été bien ajouter') ; 
+        return to_route('dashboard')->with('success', 'Le bien a été bien ajouter') ; 
     }
 
 
@@ -69,8 +73,8 @@ class PropertyController extends Controller
     {
         return view('managers.properties.form', [
             'property' => $property,
-            'specificities' => Specificity::pluck('name_speci', 'id'),
-            'cities' => City::pluck('name_city', 'id')
+            'cities' => City::pluck('name_city', 'id'),
+            'images' => Image::query()->with('property_id', $property->id) 
         ]) ; 
     }
 

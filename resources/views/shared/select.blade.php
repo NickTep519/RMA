@@ -2,19 +2,20 @@
     $name ??= '' ; 
     $label ??= '' ; 
     $values ??= '' ; 
+    $class ??= '' ; 
 @endphp
 
-<div>
+<div @class(['inputBox', $class])>
     <label for="{{$name}}">{{$label}}</label>
     <select id="{{$name}}" @if($name != 'city') name="{{$name}}[]" multiple @else name="{{$name}}" @endif>
-@foreach ($values as $k => $v)
-        <option  @if($value->contains($k)) selected @endif value="{{$k}}"> {{$v}} </option>    
-@endforeach
+        @foreach ($values as $k => $v)
+            <option  @if($value->contains($k)) selected @endif value="{{$k}}"> {{$v}} </option>    
+        @endforeach
     </select>
 
-@error('{{$name}}')
-    <div class="invalid-feedback">
-        {{$message}}
-    </div>    
-@enderror
+    @error('{{$name}}')
+        <div class="invalid-feedback">
+            {{$message}}
+        </div>    
+    @enderror
 </div>

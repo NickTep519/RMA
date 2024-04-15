@@ -18,9 +18,9 @@
                     <td>{{number_format($tenant->rent, thousands_separator: ' ')}}</td>
                     <td>
                         @if ($tenant->sold)
-                            Payé
+                            ✔️
                         @else
-                            Non Payé
+                            ❌
                         @endif
                     </td>
                 </tr>
@@ -30,78 +30,57 @@
                     <td>Trois chambres Salon</td>
                     <td>Tokan</td>
                     <td>5000</td>
-                    <td> Payé</td>
+                    <td> ❌</td>
                 </tr>
                 <tr>
                     <td>Toni</td>
                     <td>Trois chambres Salon</td>
                     <td>Tokan</td>
                     <td>50000</td>
-                    <td> Payé</td>
+                    <td> ✔️</td>
                 </tr>
                 <tr>
                     <td>Toni</td>
                     <td>Trois chambres Salon</td>
                     <td>Tokan</td>
                     <td>50000</td>
-                    <td> Payé</td>
+                    <td> ✔️</td>
                 </tr>
                 <tr>
                     <td>Toni</td>
                     <td>Trois chambres Salon</td>
                     <td>Tokan</td>
                     <td>50000</td>
-                    <td> Payé</td>
+                    <td>❌</td>
                 </tr> 
                 <tr>
                     <td>Toni</td>
                     <td>Trois chambres Salon</td>
                     <td>Tokan</td>
                     <td>50000</td>
-                    <td> Payé</td>
+                    <td>✔️</td>
                 </tr> 
                 <tr>
                     <td>Toni</td>
                     <td>Trois chambres Salon</td>
                     <td>Tokan</td>
                     <td>50000</td>
-                    <td> Payé</td>
+                    <td>✔️</td>
                 </tr> 
                 <tr>
                     <td>Toni</td>
                     <td>Trois chambres Salon</td>
                     <td>Tokan</td>
                     <td>50000</td>
-                    <td> Payé</td>
+                    <td> ✔️</td>
                 </tr> 
                 <tr>
                     <td>Toni</td>
                     <td>Trois chambres Salon</td>
                     <td>Tokan</td>
                     <td>50000</td>
-                    <td> Payé</td>
+                    <td> ✔️</td>
                 </tr> 
-                <tr>
-                    <td>Toni</td>
-                    <td>Trois chambres Salon</td>
-                    <td>Tokan</td>
-                    <td>50000</td>
-                    <td> Payé</td>
-                </tr> 
-                <tr>
-                    <td>Toni</td>
-                    <td>Trois chambres Salon</td>
-                    <td>Tokan</td>
-                    <td>50000</td>
-                    <td> Payé</td>
-                </tr> 
-                <tr>
-                    <td>Toni</td>
-                    <td>Trois chambres Salon</td>
-                    <td>Tokan</td>
-                    <td>50000</td>
-                    <td> Payé</td>
-                </tr>
         </tbody>
     </table>
 </div>

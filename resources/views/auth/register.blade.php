@@ -14,7 +14,7 @@
             <!-- Nom -->
             <div class="form-group">
                 <label for="name">Nom</label>
-                <input type="text" id="name" name="name" placeholder="Nom Démarcheur/Agence immobilière" required  autofocus autocomplete="name" value="{{old('name', )}}">
+                <input type="text" id="name" name="name" placeholder="Nom Bailleurs/Démarcheur/Agence immobilière" required  autofocus autocomplete="name" value="{{old('name', )}}">
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
 

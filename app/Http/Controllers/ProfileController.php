@@ -24,10 +24,6 @@ class ProfileController extends Controller
         $properties = Property::query()->where('user_id', $user_id)->paginate(4) ; 
         $tenants = Tenant::query()->where('user_id', $user_id)->with('property')->get() ; 
 
-        /*foreach ($properties as $property) {
-            dd($property->created_at->format('m')) ; 
-        }*/
-
         return view('managers.dashboard.dashboard', [
             'user'=> Auth::user(),
             'properties'=> $properties, 

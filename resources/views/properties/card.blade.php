@@ -9,6 +9,8 @@
     $heures = $minutes / 60 ; 
     $jours =  $heures / 24 ; 
     $semaines = $jours / 7 ; 
+    $mois = $semaines / 4 ; 
+    $annee = $mois / 12 ; 
 
 @endphp
 
@@ -45,7 +47,7 @@
         </div>
 
         <div class="user-biography">
-            <p>{{$property->user?->user?->biography}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis est deleniti aliquid quia repellendus sunt, optio deserunt vero.</p>
+            <p>{{$property->user?->biography}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis est deleniti aliquid quia repellendus sunt, optio deserunt vero.</p>
         </div>
     </div>
     
@@ -60,21 +62,28 @@
     <div class="property-others">
         <p class="publish-time"> 
             @if ($secondes < 1)
-                Publié il y a {{$secondes}}s
+                Publié il y a {{$secondes}} s
             @else
                 @if ($minutes < 60)
-                    Publié il y a {{ceil($minutes)}}min
+                    Publié il y a {{ceil($minutes)}} min
                 @else
                     @if ($heures < 24)
-                        Publié il y a {{floor($heures)}}h
+                        Publié il y a {{floor($heures)}} h
                     @else
-                        @if ($semaines < 7)
+                        @if ($jours < 7)
                             Publié il y a {{floor($jours)}} j
                         @else
-                            Publié il y a {{floor($semaines)}} sem
+                            @if ($semaines < 4)
+                                Publié il y a {{floor($semaines)}} sem
+                            @else
+                                @if ($mois < 12)
+                                    Publié il y a {{floor($mois)}} mois
+                                @else
+                                    Publié il y a {{floor($annee)}} mois
+                                @endif
+                            @endif
                         @endif
-                    @endif
-                    
+                    @endif              
                 @endif
             @endif
         </p>

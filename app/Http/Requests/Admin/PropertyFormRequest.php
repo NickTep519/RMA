@@ -30,9 +30,14 @@ class PropertyFormRequest extends FormRequest
             'floor' => ['required', 'integer'], 
             'price' => ['required', 'integer'],
             'neighborhood' => ['required', 'string', 'min:2'],
-            'sold' => ['required', 'boolean'],
+            'sold' => ['required','boolean'],
+            'rent_advance' => ['required', 'integer', 'min:0'],
+            'rent_prepaid' => ['required', 'integer', 'min:0'],
+            'cee' => ['required', 'integer', 'min:0'],
+            'commission' => ['required', 'integer', 'min:0'],
+            'visit_fees' => ['required', 'integer', 'min:0'],
             'city' => ['required'],
-            'specificities' => ['array']
+            'images.*' => ['required','mimes:jpeg,png,jpg','image', 'max:2000']
         ] ;
     }
 }

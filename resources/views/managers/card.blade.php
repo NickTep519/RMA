@@ -16,8 +16,4 @@
             @endif
         @endfor
     </div>
-
-    <div class="real-time-rating">
-        <span>&#9733;</span>
-    </div>
 </div> 

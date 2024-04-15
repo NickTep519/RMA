@@ -46,7 +46,7 @@ class Property extends Model
         return $this->belongsTo(User::class) ; 
     }
 
-    public function pictures() : HasMany {
+    public function images() : HasMany {
         return $this->hasMany(Picture::class) ; 
     }
 

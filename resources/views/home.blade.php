@@ -6,7 +6,7 @@
 
 <section class="welcome">
     <h1>Bienvenue sur RMA</h1>
-    <p>Explorez les propriétés disponibles dans votre région. </p>
+    <h6>Explorez les propriétés disponibles dans votre région.</h6>
     <a href="{{route('properties.index')}}" class="bouton bouton-primary">Commencer</a>
 </section>
 
