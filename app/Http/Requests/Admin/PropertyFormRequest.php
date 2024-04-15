@@ -37,7 +37,7 @@ class PropertyFormRequest extends FormRequest
             'commission' => ['required', 'integer', 'min:0'],
             'visit_fees' => ['required', 'integer', 'min:0'],
             'city' => ['required'],
-            'images.*' => ['required','mimes:jpeg,png,jpg','image', 'max:2000']
+            'images.*' => ['required','image', 'max:2000']
         ] ;
     }
 }

@@ -27,7 +27,12 @@ class Property extends Model
         'floor',
         'price',
         'neighborhood',
-        'sold'
+        'sold',
+        'rent_advance',
+        'rent_prepaid',
+        'cee',
+        'commission',
+        'visit_fees'
     ] ; 
 
     public function slug()  {

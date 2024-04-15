@@ -112,7 +112,7 @@
             
                 <div class="inputBox">
                     <input type="file" name="images[]" multiple >
-                    @error('rent_prepaid')
+                    @error('images.*')
                         <div>
                             {{$message}}
                         </div>
