@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Managers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ImageController;
 use App\Http\Requests\Admin\PropertyFormRequest;
 use App\Models\Admin\Property;
-use App\Models\Admin\Specificity;
 use App\Models\City;
 use App\Models\Image;
-use Illuminate\Http\Request;
+use App\Service\ImagePathGenerator;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\UploadedFile ;
+use Illuminate\Http\Request;
+
 
 class PropertyController extends Controller
 {
@@ -49,18 +53,42 @@ class PropertyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PropertyFormRequest $request)
+    public function store(Filesystem $filesystem, PropertyFormRequest $request)
     {
         $user_id = Auth::user()->id ; 
         $datas = $request->validated() ; 
-        $data = collect($datas)->except(['city'])->all() ;  
+        $data = collect($datas)->except('city')->all() ;  
 
         $property = Property::create($data) ; 
 
         $city = City::find($datas['city']) ; 
         $property->city()->associate($city) ; 
         $property->user_id = $user_id ; 
-        $property->save() ; 
+        $property->save() ;
+
+        
+        $images = $request->validated('images') ; 
+        
+        /** @var UploadedFile */
+
+        foreach ($images as $image) {
+
+            if (!$image->getError()) {
+
+                $img = $image->store() ; 
+
+                $path = basename($img) ; 
+
+                (new ImageController())->show($filesystem, $path) ; 
+                $imagePathGenarator = new ImagePathGenerator() ; 
+ 
+                $imgg = new Image() ; 
+                $imgg->name = $imagePathGenarator->generate($path, 200, 200); 
+                $imgg->property()->associate($property) ; 
+                $imgg->save() ; 
+            }
+         
+        }
 
         return to_route('dashboard')->with('success', 'Le bien a été bien ajouter') ; 
     }
@@ -69,32 +97,61 @@ class PropertyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+
     public function edit(Property $property)
     {
         return view('managers.properties.form', [
             'property' => $property,
             'cities' => City::pluck('name_city', 'id'),
-            'images' => Image::query()->with('property_id', $property->id) 
+            'images' => Image::where('property_id', $property->id)->get() 
         ]) ; 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(PropertyFormRequest $request, Property $property)
+    public function update(Filesystem $filesystem, PropertyFormRequest $request, Property $property)
     {
+        $user_id = Auth::user()->id ; 
         $datas = $request->validated() ; 
-        $data = collect($datas)->except(['specificities', 'city'])->all() ;  
+        $data = collect($datas)->except('city')->all() ;  
 
-        $property->update($datas) ; 
+        $property->update($data) ; 
 
         $city = City::find($datas['city']) ; 
         $property->city()->associate($city) ; 
-        $property->save() ; 
+        $property->user_id = $user_id ; 
+        $property->save() ;
 
-        $property->specificities()->sync($datas['specificities']) ;
+        
+        $images = $request->validated('images') ; 
+        
+        /** @var UploadedFile */
 
-        return to_route('admin.properties.index')->with('success', 'Le bien a été bien mis à jour') ; 
+        if ($request->hasFile('images')) {
+
+            foreach ($images as $image) {
+
+                if (!$image->getError()) {
+    
+                    $img = $image->store() ; 
+    
+                    $path = basename($img) ; 
+    
+                    (new ImageController())->show($filesystem, $path) ; // Traitement de l'image avec Glide
+                    $imagePathGenarator = new ImagePathGenerator() ; 
+     
+                    $imgg = new Image() ; 
+                    $imgg->name = $imagePathGenarator->generate($path, 200, 200); 
+                    $imgg->property()->associate($property) ; 
+                    $imgg->save() ; 
+                }
+             
+            }
+
+        }   
+
+        return to_route('dashboard')->with('success', 'Le bien a été bien ajouter') ; 
     }
 
     /**

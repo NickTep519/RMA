@@ -10,13 +10,13 @@
 <body>
 
     @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
     @endif    
     
     <div class="container">
@@ -111,26 +111,33 @@
 
             
                 <div class="inputBox">
-                    <input type="file" name="images[]" multiple >
+                    <input type="file" name="images[]" multiple required>
                     @error('images.*')
-                        <div>
-                            {{$message}}
-                        </div>
+                        <div> {{$message}} </div>
                     @enderror
                 </div>
 
                 <button class="btn btn-primary" type="submit"> @if ($property->exists) Modifier @else Ajouter @endif </button>
             </form>
-        </div>
+        </div>     
 
         @if ($images->exists)
             <div class="image">
-                @foreach ($images as $image)
-                    <img src="{{$image->name}}" alt="">
-                @endforeach
-            </div>         
+                @forelse ($images as $image)
+                    <div>
+                        <img src="{{$image->name}}" alt="{{$property->name}}" class="img">
+                        <form action="{{route('image.destroy', $image)}}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button>Sup</button>
+                        </form>
+                    </div>
+                @empty
+                    <p>Il n'y a pas d'image dispoible pour ce bien.</p>
+                @endforelse
+            </div>                     
         @endif
-   
+
     </div>
 
     <footer>

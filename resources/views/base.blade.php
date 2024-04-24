@@ -16,8 +16,8 @@
         <div class="menu-profile">
             <nav>
                 <ul>
-                    <li><a href="{{route('properties.index')}}">Trouver un bien</a></li>
-                    <li><a href="{{route('managers.index')}}">Trouver un gestionnaire de bien</a></li>
+                    <li><a href="{{route('properties.index')}}">Biens</a></li>
+                    <li><a href="{{route('managers.index')}}">Gestionnaires</a></li>
                 </ul>
             </nav>
     

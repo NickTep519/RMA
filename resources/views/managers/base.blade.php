@@ -13,12 +13,12 @@
         <div class="logo">
             <a href="{{route('home.index')}}">RMA</a>
         </div>
-        <nav>
+        <!--<nav>
             <ul>
                 <li><a href="{{route('dashboard')}}">Vos Biens</a></li>
                 <li><a href="{{route('managers.index')}}">Vos Locataires</a></li>
             </ul>
-        </nav>
+        </nav>-->
 
         <div class="user-profile">
             @auth

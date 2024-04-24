@@ -5,6 +5,7 @@ use App\Http\Controllers\Managers\SpecificityController;
 use App\Http\Controllers\Managers\ManagersController;
 use App\Http\Controllers\Properties\DiscoveryPropertiesContoller;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RatingCotroller;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +34,12 @@ Route::prefix('managers')->name('managers.')->group(function(){
     Route::get('/', [ManagersController::class, 'index'])->name('index') ; 
     Route::get('/{user}', [ManagersController::class, 'show'])->name('show') ;
     Route::resource('property', PropertyController::class)->except(['show', 'index'])->middleware('auth') ;
-    Route::resource('specificity', SpecificityController::class)->except(['show', 'index'])->middleware('auth') ; 
+}) ;
+
+Route::prefix('images')->name('image.')->group(function (){
+    Route::get('/{path}', [ImageController::class, 'show'])->where('path', '.*') ; 
+    Route::delete('/{image}', [ImageController::class, 'destroy'])->name('destroy') ; 
+
 }) ; 
 
 Route::get('/', [HomeController::class, 'home'])->name('home.index') ;

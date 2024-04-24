@@ -16,12 +16,12 @@ class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
-     */
+    */
 
     public function index() : View
     {
         $user_id = Auth::user()->id ; 
-        $properties = Property::query()->where('user_id', $user_id)->paginate(4) ; 
+        $properties = Property::query()->where('user_id', $user_id)->paginate(25) ; 
         $tenants = Tenant::query()->where('user_id', $user_id)->with('property')->get() ; 
 
         return view('managers.dashboard.dashboard', [
