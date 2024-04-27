@@ -16,6 +16,6 @@
 
     <!-- Photos du bien immobilier -->
     <div class="properti-photos">
-        <!-- Insérez vos photos ici -->
+        <!-- photos ici -->
     </div>
 </div> 

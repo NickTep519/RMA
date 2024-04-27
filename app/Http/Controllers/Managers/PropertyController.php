@@ -13,7 +13,7 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\UploadedFile ;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 class PropertyController extends Controller
 {
@@ -25,6 +25,7 @@ class PropertyController extends Controller
     public function create()
     {
         $property = new Property() ; 
+        $images = new Image() ; 
 
         $property->fill([
             'title' => 'Titre du bien',
@@ -46,7 +47,7 @@ class PropertyController extends Controller
         return view('managers.properties.form', [
             'property' => $property,
             'cities' => City::pluck('name_city', 'id'),
-            'images' => new Image()
+            'images' => $images->query()->where('id', 0)->get()
         ]) ; 
     }
 
@@ -75,22 +76,21 @@ class PropertyController extends Controller
 
             if (!$image->getError()) {
 
-                $img = $image->store() ; 
+                $img = $image->store() ;
+                $path = Storage::path($img) ; 
 
-                $path = basename($img) ; 
-
-                (new ImageController())->show($filesystem, $path) ; 
                 $imagePathGenarator = new ImagePathGenerator() ; 
  
                 $imgg = new Image() ; 
                 $imgg->name = $imagePathGenarator->generate($path, 200, 200); 
+                $imgg->base_name = $img ; 
                 $imgg->property()->associate($property) ; 
                 $imgg->save() ; 
             }
-         
+ 
         }
 
-        return to_route('dashboard')->with('success', 'Le bien a été bien ajouter') ; 
+        return to_route('dashboard')->with('success', 'Le bien a été bien AJOUTE') ; 
     }
 
 
@@ -134,15 +134,14 @@ class PropertyController extends Controller
 
                 if (!$image->getError()) {
     
-                    $img = $image->store() ; 
-    
-                    $path = basename($img) ; 
-    
-                    (new ImageController())->show($filesystem, $path) ; // Traitement de l'image avec Glide
+                    $img = $image->store() ;
+                    $path = basename($img) ;
+
                     $imagePathGenarator = new ImagePathGenerator() ; 
      
                     $imgg = new Image() ; 
                     $imgg->name = $imagePathGenarator->generate($path, 200, 200); 
+                    $imgg->base_name = $img ; 
                     $imgg->property()->associate($property) ; 
                     $imgg->save() ; 
                 }
@@ -151,7 +150,7 @@ class PropertyController extends Controller
 
         }   
 
-        return to_route('dashboard')->with('success', 'Le bien a été bien ajouter') ; 
+        return to_route('dashboard')->with('success', 'Le bien a été bien MODIFIE') ; 
     }
 
     /**

@@ -7,29 +7,31 @@
     @vite(['resources/css/form.css', 'ressources/js/app.js'])
     <title>{{$property->exists ? 'Modifier un bien' : 'Ajouter un bien'}}</title>
 </head>
-<body>
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif    
+<body>   
+    @include('shared.flash')
     
     <div class="container">
+
+        @if ($errors->any())
+            <div class="alt alt-dgr">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif 
+
         <div class="form">
             <div class="title">
                 <h2>{{$property->exists ? 'Modifier un bien' : 'Ajouter un bien'}}</h2>
             </div>
 
-            <form action="{{route($property->exists ? 'managers.property.update' : 'managers.property.store', $property)}}" method="post" enctype="multipart/form-data"> 
-
-
+            <form action="{{route($property->exists ? 'managers.property.update' : 'managers.property.store', $property)}}" method="POST" enctype="multipart/form-data"> 
                 @csrf
-                @method($property->exsits ? 'put' : 'post')
+                @if ($property->exists)
+                    @method('PUT')
+                @endif
 
                 <fieldset>
                     <legend>Infos Genérales</legend>
@@ -64,7 +66,7 @@
                             <label for="rent_prepaid">Prépayé : </label>
                             <input type="number" name="rent_prepaid" id="rent_prepaid" value="{{old('rent_prepaid', $property->rent_prepaid)}}" placeholder="Nombre de mois">
                             @error('rent_prepaid')
-                                <div>
+                                <div class="error">
                                     {{$message}}
                                 </div>
                             @enderror
@@ -74,7 +76,7 @@
                             <label for="cee"> CEE : </label>
                             <input type="number" name="cee" id="cee" value="{{old('cee', $property->cee)}}">
                             @error('cee')
-                                <div>
+                                <div class="error">
                                     {{$message}}
                                 </div>
                             @enderror
@@ -89,7 +91,7 @@
                             <label for="commission">Commission</label>
                             <input type="number" name="commission" id="commission" value="{{old('commission', $property->commission)}}">
                             @error('commission')
-                                <div>
+                                <div class="error">
                                     {{$message}}
                                 </div>
                             @enderror
@@ -99,7 +101,7 @@
                             <label for="visit_fees">Frais de visite</label>
                             <input type="number" name="visit_fees" id="visit_fees" value="{{old('visit_fees', $property->visit_fees)}}">
                             @error('visit_fees')
-                                <div>
+                                <div class="error">
                                     {{$message}}
                                 </div>
                             @enderror
@@ -111,7 +113,7 @@
 
             
                 <div class="inputBox">
-                    <input type="file" name="images[]" multiple required>
+                    <input type="file" name="images[]" multiple @if (!$property->exists) required @endif>
                     @error('images.*')
                         <div> {{$message}} </div>
                     @enderror
@@ -121,7 +123,7 @@
             </form>
         </div>     
 
-        @if ($images->exists)
+        @if (!$images->isEmpty())
             <div class="image">
                 @forelse ($images as $image)
                     <div>
@@ -129,7 +131,7 @@
                         <form action="{{route('image.destroy', $image)}}" method="POST">
                             @csrf
                             @method('delete')
-                            <button>Sup</button>
+                            <button>🗑️</button>
                         </form>
                     </div>
                 @empty

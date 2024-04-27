@@ -17,7 +17,7 @@
                 <img src="{{ asset('path/to/profile_picture.jpg') }}" alt="Photo de profil RMA">
             </div>
         
-            <a href="{{route('dashboard')}}" class="user-name">
+            <a href="{{route('managers.show', $user)}}" class="user-name">
                 <h2>{{ $user->name }}</h2>
             </a>
     
