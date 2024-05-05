@@ -15,13 +15,11 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center ;
-    align-items: center ;
     width: 25%;
 }
 
 .main-content {
     width: 75%;
-    /*border: red solid 2px ;*/
 }
 
 .main-content h2 {
@@ -30,7 +28,7 @@ body {
     margin-bottom: 20px;
 }
 
-.profile-picture {
+.profile-picture img {
     width: 300px;
     height: 300px;
     border-radius: 50%; 
@@ -338,7 +336,7 @@ tbody tr:last-of-type{
 }
 
 @media (max-width: 1060px){
-    .profile-picture {
+    .profile-picture img {
         width: 200px;
         height: 200px;
     }
@@ -358,7 +356,7 @@ tbody tr:last-of-type{
         width: 100%;
     }
 
-    .profile-picture {
+    .profile-picture img {
         width: 250px;
         height: 250px;
     }

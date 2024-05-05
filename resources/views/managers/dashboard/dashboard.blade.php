@@ -17,7 +17,7 @@
     
             <div class="banniaire">
                 <div class="profile-picture">
-                    <img src="{{ asset('path/to/profile_picture.jpg') }}" alt="Photo de profil RMA">
+                    <img src="{{app(App\Service\ImagePathGenerator::class)->generate('profil_default.jpg', ['h'=>200, 'w'=>200])}}" alt="">
                 </div>
             </div>
                 
@@ -39,7 +39,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis tempora voluptate dolor vitae expedita alias corporis odio numquam id obcaecati repellat laudantium deserunt incidunt, fugiat illum a, natus molestias commodi!{{ $user->biography }}</p>
             </div>
         
-            <a href="#" class="edit-profile-button">Éditer votre profil</a>
+            <a href="{{route('profile.edit')}}" class="edit-profile-button">Éditer votre profil</a>
         
             <div class="contact-links">
                 <a href="#" class="contact-link">WhatsApp</a>

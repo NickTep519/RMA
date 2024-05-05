@@ -78,11 +78,9 @@ class PropertyController extends Controller
 
                 $img = $image->store() ;
                 $path = Storage::path($img) ; 
-
-                $imagePathGenarator = new ImagePathGenerator() ; 
  
                 $imgg = new Image() ; 
-                $imgg->name = $imagePathGenarator->generate($path, 200, 200); 
+                $imgg->name = app(ImagePathGenerator::class)->generate($path, 200, 200) ; 
                 $imgg->base_name = $img ; 
                 $imgg->property()->associate($property) ; 
                 $imgg->save() ; 
@@ -136,11 +134,9 @@ class PropertyController extends Controller
     
                     $img = $image->store() ;
                     $path = basename($img) ;
-
-                    $imagePathGenarator = new ImagePathGenerator() ; 
      
                     $imgg = new Image() ; 
-                    $imgg->name = $imagePathGenarator->generate($path, 200, 200); 
+                    $imgg->name = app(ImagePathGenerator::class)->generate($path, 200, 200) ; 
                     $imgg->base_name = $img ; 
                     $imgg->property()->associate($property) ; 
                     $imgg->save() ; 

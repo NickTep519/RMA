@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Admin\Property;
+use App\Models\Image;
 use App\Models\Tenant;
 use App\Models\User;
+use App\Service\ImagePathGenerator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +22,11 @@ class ProfileController extends Controller
 
     public function index() : View
     {
+
+        /*$app = app(ImagePathGenerator::class)->generate('Capture.png', 200, 200) ; 
+
+        dd($app) ; */
+
         $user_id = Auth::user()->id ; 
         $properties = Property::query()->where('user_id', $user_id)->paginate(25) ; 
         $tenants = Tenant::query()->where('user_id', $user_id)->with('property')->get() ; 
