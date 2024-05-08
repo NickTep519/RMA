@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Actuality;
 use App\Models\Admin\Property;
 use App\Models\Image;
 use App\Models\Tenant;
@@ -30,11 +31,13 @@ class ProfileController extends Controller
         $user_id = Auth::user()->id ; 
         $properties = Property::query()->where('user_id', $user_id)->paginate(25) ; 
         $tenants = Tenant::query()->where('user_id', $user_id)->with('property')->get() ; 
+        $actualities = Actuality::query()->inRandomOrder()->take(2)->orderBy('created_at', 'asc')->get() ; 
 
         return view('managers.dashboard.dashboard', [
             'user'=> Auth::user(),
             'properties'=> $properties, 
-            'tenants' => $tenants
+            'tenants' => $tenants,
+            'actualities' => $actualities,
         ]) ; 
     }
 

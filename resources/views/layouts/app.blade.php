@@ -16,11 +16,13 @@
     </head>
     
     <body class="font-sans antialiased">
+
+            <!-- Page Navigation -->
+    
+
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="header">
                     {{ $header }} 
-                </header>
             @endif
 
             <!-- Page Content -->

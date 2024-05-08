@@ -4,9 +4,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Actuality;
 use App\Models\Admin\Property;
 use App\Models\Admin\Specificity;
 use App\Models\City;
+use App\Models\Image;
+use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -28,27 +31,30 @@ class DatabaseSeeder extends Seeder
         $userNick = User::factory()->create([
             'name' => 'Nick Tep',
             'email' => 'nicktep519@gmail.com',
+            'phone' => '+229 65372714'
         ]) ; 
 
+       
+        $actualities = Actuality::factory(8)->create() ;  
+        $cities = City::factory(189)->create() ; 
 
-        $cities = City::factory(77)->create() ; 
 
-        $specificities = Specificity::factory(20)->create() ; 
-
-        $specificities->each(function($specificity) use ($users) {
-            $specificity->user()->associate($users->random()) ; 
-        }) ; 
-
-        $specificities->each->save() ; 
-
-        Property::factory(100)->create()->each(function($property) use ($users, $cities, $specificities) {
+        $properties = Property::factory(100)->create()->each(function($property) use ($users, $cities) {
             $property->user()->associate($users->random()) ; 
             $property->city()->associate($cities->random()) ; 
             $property->save() ; 
             
-            $property->specificities()->sync($specificities->random(3)->pluck('id')->toArray())  ; 
-            
+        }) ; 
 
+        $images = Image::factory(100)->create()->each(function($image) use ($properties){
+            $image->property()->associate($properties->random()) ; 
+            $image->save() ; 
+        }) ; 
+
+        $tenants = Tenant::factory(150)->create()->each(function($tenant) use ($users, $properties){
+            $tenant->user()->associate($users->random()) ; 
+            $tenant->property()->associate($properties->random()) ; 
+            $tenant->save() ; 
         }) ; 
         
     }

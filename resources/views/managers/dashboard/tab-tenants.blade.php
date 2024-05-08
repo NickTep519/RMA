@@ -13,7 +13,7 @@
             @foreach ($tenants as $tenant)
                 <tr>
                     <td>{{$tenant->name}}</td>
-                    <td>{{$tanant->property?->title}}</td>
+                    <td>{{$tenant->property?->title}}</td>
                     <td>{{$tenant->property?->neighborhood}}</td>
                     <td>{{number_format($tenant->rent, thousands_separator: ' ')}}</td>
                     <td>
@@ -25,62 +25,6 @@
                     </td>
                 </tr>
             @endforeach
-                <tr>
-                    <td>Toni</td>
-                    <td>Trois chambres Salon</td>
-                    <td>Tokan</td>
-                    <td>5000</td>
-                    <td> ❌</td>
-                </tr>
-                <tr>
-                    <td>Toni</td>
-                    <td>Trois chambres Salon</td>
-                    <td>Tokan</td>
-                    <td>50000</td>
-                    <td> ✔️</td>
-                </tr>
-                <tr>
-                    <td>Toni</td>
-                    <td>Trois chambres Salon</td>
-                    <td>Tokan</td>
-                    <td>50000</td>
-                    <td> ✔️</td>
-                </tr>
-                <tr>
-                    <td>Toni</td>
-                    <td>Trois chambres Salon</td>
-                    <td>Tokan</td>
-                    <td>50000</td>
-                    <td>❌</td>
-                </tr> 
-                <tr>
-                    <td>Toni</td>
-                    <td>Trois chambres Salon</td>
-                    <td>Tokan</td>
-                    <td>50000</td>
-                    <td>✔️</td>
-                </tr> 
-                <tr>
-                    <td>Toni</td>
-                    <td>Trois chambres Salon</td>
-                    <td>Tokan</td>
-                    <td>50000</td>
-                    <td>✔️</td>
-                </tr> 
-                <tr>
-                    <td>Toni</td>
-                    <td>Trois chambres Salon</td>
-                    <td>Tokan</td>
-                    <td>50000</td>
-                    <td> ✔️</td>
-                </tr> 
-                <tr>
-                    <td>Toni</td>
-                    <td>Trois chambres Salon</td>
-                    <td>Tokan</td>
-                    <td>50000</td>
-                    <td> ✔️</td>
-                </tr> 
         </tbody>
     </table>
 </div>

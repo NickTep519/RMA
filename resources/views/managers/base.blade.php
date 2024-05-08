@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     <link rel="stylesheet" type="text/css" href="path/to/your/custom/style.css"/>
+    @livewireStyles
 
     @vite(['resources/css/base.css','resources/js/app.js'])
 </head>
@@ -50,6 +51,8 @@
         <p>&copy; 2024 RMA (Recherche de Maison ou d'Appartement)</p>
     </footer>
 
+    @livewireScripts
+
     <script>
 
 function openTab(evt, tabName) {
@@ -70,43 +73,6 @@ function openTab(evt, tabName) {
 }
 
 document.getElementById("defaultOpen").click();
-
-
-function openSubTab(evt, subTabName) {
-    
-    var i, j, subtabcontent, subtablinks;
-    subtabcontent = document.getElementsByClassName("subtabcontent");
-    for (i = 0; i < subtabcontent.length; i++) {
-      subtabcontent[i].style.display = "none";
-    }
-
-    subtablinks = document.getElementsByClassName("subtablinks");
-    for (var j = 0; j < subtablinks.length; j++) {
-      subtablinks[j].className = subtablinks[j].className.replace(" active", "");
-    }
-
-    document.getElementById(subTabName).style.display = "block";
-    evt.currentTarget.className += " active";
-
-}
-
-function openSubSubTab(evt, subSubTabName) {
-    var i, j, subsubtabcontent, subsubtablinks;
-    subsubtabcontent = document.getElementsByClassName("subsubtabcontent");
-    for (i = 0; i < subsubtabcontent.length; i++) {
-      subsubtabcontent[i].style.display = "none";
-    }
-
-    subsubtablinks = document.getElementsByClassName("subsubtablinks");
-    for (var j = 0; j < subsubtablinks.length; j++) {
-      subsubtablinks[j].className = subsubtablinks[j].className.replace(" active", "");
-    }
-
-    document.getElementById(subSubTabName).style.display = "block";
-    evt.currentTarget.className += " active";
-
-}
-
 
 </script>
 </body>

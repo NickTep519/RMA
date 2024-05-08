@@ -5,7 +5,7 @@ namespace Database\Factories\Admin ;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Property>
  */
 class PropertyFactory extends Factory
 {
@@ -24,8 +24,13 @@ class PropertyFactory extends Factory
             'bedrooms'=> $this->faker->numberBetween(1,30),
             'floor' =>$this->faker->numberBetween(1,5),
             'price' => $this->faker->numberBetween(10000, 500000), 
-            'neighborhood' => $this->faker->words(2, true), 
-            'sold' => false
+            'neighborhood' => $this->faker->word(), 
+            'sold' => false,
+            'rent_advance' => 3,
+            'rent_prepaid' => 3,
+            'cee' => $this->faker->numberBetween(10000, 50000),
+            'commission' => $this->faker->numberBetween(1,3),
+            'visit_fees' => $this->faker->numberBetween(3000, 10000)
         ];
     }
 }

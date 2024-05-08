@@ -20,12 +20,6 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->nullable()->constrained()->cascadeOnDelete() ; 
         }) ; 
 
-        Schema::create('property_specificity', function(Blueprint $table){
-            $table->foreignIdFor(Property::class)->constrained()->cascadeOnDelete() ; 
-            $table->foreignIdFor(Specificity::class)->constrained()->cascadeOnDelete() ; 
-            $table->primary(['property_id', 'specificity_id']) ; 
-        }) ; 
-
         Schema::table('users', function(Blueprint $table){
             $table->string('phone')->nullable() ; 
         }) ; 

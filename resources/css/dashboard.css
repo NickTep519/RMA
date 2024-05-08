@@ -1,6 +1,17 @@
-body {
-    font-family: Verdana, Tahoma, sans-serif ;
+*, ::before, ::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    height: 100vh;
+}
+
 .content{
     display: flex;
     flex-direction: row;
@@ -174,6 +185,8 @@ body {
 
                     /********** Les Onglets   ********/
 
+                    /*** Tabs (contenu général et gestionnaire de locataires) ***/
+
 .tabs {
     display: flex;
     flex-direction: row;
@@ -212,13 +225,24 @@ body {
     display: block;
 }
 
-                                    /***** Sub ****/
-.subtabs {
+                        /***** Subtabs  (Les années) ****/
+
+.subtabs {          /*(nav)*/
+    width: 50%;
+    height: 75px;
+    border-bottom: 0.5px solid #333;                      
+}
+
+.liste-items{
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-                                    
+    list-style-type: none;
+    height: 100%;
+    /*line-height: 75px;*/
+}
+
+.items{
+    cursor: pointer;
+    flex-shrink: 0;
 }
                                     
 .subtablinks {

@@ -32,12 +32,6 @@ return new class extends Migration
             $table->timestamps() ; 
         }) ; 
 
-
-        Schema::create('specificities', function(Blueprint $table){
-            $table->id() ; 
-            $table->string('name_speci') ; 
-            $table->timestamps() ; 
-        }) ; 
     }
 
     /**
@@ -47,6 +41,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('properties') ;
         Schema::dropIfExists('cities') ; 
-        Schema::dropIfExists('specificities') ; 
     }
 };

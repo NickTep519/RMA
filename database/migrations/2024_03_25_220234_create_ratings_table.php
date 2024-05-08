@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete() ; 
+            $table->foreignIdFor(User::class)->nullable()->constrained()->cascadeOnDelete() ; 
             $table->string('ip_adress') ; 
             $table->integer('rating') ; 
             $table->timestamps();

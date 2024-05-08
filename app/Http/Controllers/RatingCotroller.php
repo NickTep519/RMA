@@ -15,7 +15,7 @@ class RatingCotroller extends Controller
                             ->first() ; 
 
         if ($existingRating) {
-            return back()->with('error_rating', 'Vous avez déjà noté cet utilisateur. ') ; 
+            return back()->with('error_rating', 'Vous avez déjà noté cet agent. ') ; 
         }
 
         /*Rating::create([

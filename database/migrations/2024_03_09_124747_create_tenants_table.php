@@ -21,8 +21,8 @@ return new class extends Migration
         });
 
         Schema::table('tenants', function(Blueprint $table){
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete() ; 
-            $table->foreignIdFor(Property::class)->constrained()->cascadeOnDelete() ; 
+            $table->foreignIdFor(User::class)->nullable()->constrained()->cascadeOnDelete() ; 
+            $table->foreignIdFor(Property::class)->nullable()->constrained()->cascadeOnDelete() ; 
         }) ; 
     }
 
