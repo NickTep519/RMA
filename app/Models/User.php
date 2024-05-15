@@ -53,16 +53,11 @@ class User extends Authenticatable
         return $this->hasMany(Property::class) ; 
     }
 
-    public function specificities() : HasMany {
-        return $this->hasMany(Specificity::class) ; 
-    }
-
-    public function tenant() : HasOne {
-        return $this->hasOne(Tenant::class) ; 
-    }
-
-
     public function rating() : HasOne {
         return $this->hasOne(Rating::class) ; 
+    }
+
+    public function contracts() {
+        return $this->hasMany(Contract::class) ; 
     }
 }

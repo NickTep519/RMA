@@ -3,6 +3,7 @@
 namespace App\Models\Admin ;
 
 use App\Models\City;
+use App\Models\Contract;
 use App\Models\Picture;
 use App\Models\Tenant;
 use App\Models\User;
@@ -39,10 +40,6 @@ class Property extends Model
         return Str::slug($this->title) ; 
     }
 
-    public function specificities() : BelongsToMany{
-        return $this->belongsToMany(Specificity::class)  ; 
-    }
-
     public function city() : BelongsTo {
         return $this->belongsTo(City::class) ; 
     }
@@ -51,11 +48,8 @@ class Property extends Model
         return $this->belongsTo(User::class) ; 
     }
 
-    public function images() : HasMany {
-        return $this->hasMany(Picture::class) ; 
+    public function contract() {
+        return $this->hasOne(Contract::class) ; 
     }
 
-    public function tenant(): HasOne {
-        return $this->hasOne(Tenant::class) ; 
-    }
 }

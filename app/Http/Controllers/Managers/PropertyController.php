@@ -44,11 +44,11 @@ class PropertyController extends Controller
             'visit_fees'=>3000
         ]) ; 
 
-        return view('managers.properties.form', [
+        return view('managers.properties.form', [ 
             'property' => $property,
             'cities' => City::pluck('name_city', 'id'),
             'images' => $images->query()->where('id', 0)->get()
-        ]) ; 
+         ]) ; 
     }
 
     /**

@@ -13,17 +13,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tenants', function (Blueprint $table) {
+        Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            $table->string('name') ; 
+            $table->string('tenant_name') ;
+            $table->string('tenant_phone') ; 
+            $table->unsignedInteger('npi') ; 
+            $table->string('profession') ; 
             $table->integer('rent') ; 
+            $table->unsignedInteger('contract_number')->unique() ; 
             $table->timestamps();
-        });
 
-        Schema::table('tenants', function(Blueprint $table){
             $table->foreignIdFor(User::class)->nullable()->constrained()->cascadeOnDelete() ; 
             $table->foreignIdFor(Property::class)->nullable()->constrained()->cascadeOnDelete() ; 
-        }) ; 
+
+        });
     }
 
     /**
@@ -31,12 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-
-        Schema::table('tenants', function(Blueprint $table){
-            $table->dropForeignIdFor(User::class) ; 
-            $table->dropForeignIdFor(Property::class) ; 
-        }) ; 
-        
-        Schema::dropIfExists('tenants');
+        Schema::dropIfExists('contracts');
     }
 };

@@ -7,7 +7,7 @@
 
 <div @class(['inputBox', $class])>
     <label for="{{$name}}">{{$label}}</label>
-    <select id="{{$name}}" @if($name != 'city') name="{{$name}}[]" multiple @else name="{{$name}}" @endif>
+    <select id="{{$name}}" name="{{$name}}" >
         @foreach ($values as $k => $v)
             <option  @if($value->contains($k)) selected @endif value="{{$k}}"> {{$v}} </option>    
         @endforeach

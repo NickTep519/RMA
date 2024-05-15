@@ -8,6 +8,7 @@ use App\Models\Actuality;
 use App\Models\Admin\Property;
 use App\Models\Admin\Specificity;
 use App\Models\City;
+use App\Models\Contract;
 use App\Models\Image;
 use App\Models\Tenant;
 use App\Models\User;
@@ -51,10 +52,13 @@ class DatabaseSeeder extends Seeder
             $image->save() ; 
         }) ; 
 
-        $tenants = Tenant::factory(150)->create()->each(function($tenant) use ($users, $properties){
-            $tenant->user()->associate($users->random()) ; 
-            $tenant->property()->associate($properties->random()) ; 
-            $tenant->save() ; 
+        $contracts = Contract::factory(150)->create()->each(function($contract) use ($users, $properties){
+
+            $user = $users->random() ; 
+
+            $contract->user()->associate($user) ; 
+            $contract->property()->associate($properties->where('user_id', $user->id)->first()) ; 
+            $contract->save() ; 
         }) ; 
         
     }
