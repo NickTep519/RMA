@@ -24,7 +24,6 @@ class ProfileController extends Controller
 
     public function index() : View
     {
-
         /*$app = app(ImagePathGenerator::class)->generate('Capture.png', 200, 200) ; 
 
         dd($app) ; */

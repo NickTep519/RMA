@@ -87,7 +87,7 @@
             <div id="gestion-locataires" class="tabcontent">
                 
                 <a href="{{route('managers.contract.create')}}">
-                    <button class="add-properti-button">Emettre u n Contrat</button>
+                    <button class="add-properti-button">Emettre un Contrat</button>
                 </a>
                  @livewire('contracts')
             </div> 

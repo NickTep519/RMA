@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Managers ;
 
-use App\Http\Controllers\Controller;
-use App\Models\Admin\Property;
 use App\Models\User;
+use App\Models\Actuality;
 use Illuminate\Http\Request;
+use App\Models\Admin\Property;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class ManagersController extends Controller
 {
+
     public function index(Request $request){
 
         $users = User::query() ; 
@@ -32,11 +34,13 @@ class ManagersController extends Controller
             return to_route('dashboard') ; 
         }
          
-        $properties = Property::query()->where('user_id', $user->id)->paginate(5) ; 
+        $properties = Property::query()->where('user_id', $user->id)->paginate(6) ; 
+        $actualities = Actuality::query()->inRandomOrder()->take(2)->orderBy('created_at', 'asc')->get() ; 
 
         return view('managers.show', [
             'user' =>$user,
-            'properties' => $properties
+            'properties' => $properties,
+            'actualities' => $actualities
         ]) ; 
 
     }

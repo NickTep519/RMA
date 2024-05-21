@@ -5,20 +5,22 @@
                 <th>Nom</th>
                 <th>Biens</th>
                 <th>Quartier</th>
-                <th>Loyer</th>
+                <th>Loyer(CFA)</th>
                 <th>Solde</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($contracts as $contract)
+
+            @dump($contract->rentals)
                 <tr>
                     <td>{{$contract->tenant_name}}</td>
                     <td>{{$contract->property?->title}}</td>
                     <td>{{$contract->property?->neighborhood}}</td>
                     <td>{{number_format($contract->rent, thousands_separator: ' ')}}</td>
                     <td>
-                        @if ($contract->sold)
+                        @if ($contract)
                             ✔️
                         @else
                             ❌

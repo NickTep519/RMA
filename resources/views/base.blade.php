@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     <link rel="stylesheet" type="text/css" href="path/to/your/custom/style.css"/>
+    @livewireStyles
 
     @vite(['resources/css/base.css','resources/css/app.css','resources/css/rating.css', 'resources/js/app.js'])
 </head>
@@ -52,6 +53,7 @@
     <footer>
         <p>&copy; 2024 RMA (Recherche de Maison ou d'Appartement)</p>
     </footer>
+
     <script>
 
         const  stars = document.querySelectorAll('.stare') ; 
@@ -104,5 +106,7 @@
             return values; 
         }
     </script>
+    
+    @livewireScripts
 </body>
 </html>

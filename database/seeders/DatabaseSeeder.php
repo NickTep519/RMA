@@ -10,6 +10,7 @@ use App\Models\Admin\Specificity;
 use App\Models\City;
 use App\Models\Contract;
 use App\Models\Image;
+use App\Models\Rental;
 use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -59,6 +60,11 @@ class DatabaseSeeder extends Seeder
             $contract->user()->associate($user) ; 
             $contract->property()->associate($properties->where('user_id', $user->id)->first()) ; 
             $contract->save() ; 
+        }) ; 
+
+        $rentals = Rental::factory(300)->create()->each(function($rental) use ($contracts){
+            $rental->contract()->associate(Contract::inRandomOrder()->first()) ; 
+            $rental->save() ; 
         }) ; 
         
     }
