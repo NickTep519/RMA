@@ -48,8 +48,8 @@ Route::get('/', [HomeController::class, 'home'])->name('home.index') ;
 
 Route::prefix('properties')->name('properties.')->group(function() {
     Route::get('/', [DiscoveryPropertiesContoller::class, 'index'])->name('index') ; 
-    Route::get('/{slug}-{property}', [DiscoveryPropertiesContoller::class, 'show'])->name('show')->where(
-        [
+    Route::get('/{slug}-{property}', [DiscoveryPropertiesContoller::class, 'show'])->name('show')->where([
+        
             'slug' => '[0-9a-z\-]+',
             'property' => '[0-9]+'
         ]  

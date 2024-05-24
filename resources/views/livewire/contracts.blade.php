@@ -1,8 +1,8 @@
 <div>
 
-    <input type="number" wire:model.live="annee" id="annee">
+    <input type="number" wire:model.live="year" id="year">
     
-    <select wire:model.live="mois" id="mois">
+    <select wire:model.live="month" id="month">
         <option value="1">Janvier</option>
         <option value="2">Février</option>
         <option value="3">Mars</option>

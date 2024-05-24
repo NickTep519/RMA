@@ -36,7 +36,7 @@
             </div>
     
             <div class="biography">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis tempora voluptate dolor vitae expedita alias corporis odio numquam id obcaecati repellat laudantium deserunt incidunt, fugiat illum a, natus molestias commodi!{{ $user->biography }}</p>
+                <p>{{ $user->biography }}</p>
             </div>
         
             <a href="{{route('profile.edit')}}" class="edit-profile-button">Éditer votre profil</a>
@@ -66,7 +66,7 @@
 
                 <section class="properti-list">
                     @forelse ($properties as $property)
-                        @include('managers.dashboard.card-properties', ['property'=> $property])
+                        @include('managers.dashboard.card-properties')
                     @empty
                         @php
                             $info = 'Salut, '.$user->name.' ! Vos biens s\'afficherons ici !'

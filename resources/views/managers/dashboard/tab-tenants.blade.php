@@ -2,38 +2,40 @@
     <table class="table-style">
         <thead>
             <tr>
+                <th>IDC</th>
                 <th>Nom</th>
-                <th>Biens</th>
                 <th>Quartier</th>
                 <th>Loyer(CFA)</th>
-                <th>Solde</th>
+                <th>Location</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($contracts as $contract)
-
-            @dump($contract->rentals)
                 <tr>
+                    <td>{{$contract->contract_number}}</td>
                     <td>{{$contract->tenant_name}}</td>
-                    <td>{{$contract->property?->title}}</td>
                     <td>{{$contract->property?->neighborhood}}</td>
-                    <td>{{number_format($contract->rent, thousands_separator: ' ')}}</td>
+                    <td>{{number_format($contract->rent, thousands_separator: ' ')}} F</td>
                     <td>
-                        @if ($contract)
-                            ✔️
-                        @else
-                            ❌
-                        @endif
+                       @forelse ($contract->rentals as $rental)
+                           {{$rental->payment_status}}
+                       @empty
+                           Aucune location enrégistrée pour {{$month}}/{{$year}}
+                       @endforelse
                     </td>
                     <td>
-                        <a href="{{route('managers.contract.edit',$contract)}}">Edit</a>/
+                        <div class="properti-buttons">
+                            <a  href="{{route('managers.contract.edit',$contract)}}">
+                                <button class="edit-properti-button" >Edit</button>
+                            </a>
                         
                         <form action="{{route('managers.contract.destroy', $contract)}}" method="post">
                             @csrf
                             @method('delete')
-                            <button>sup</button>
+                            <button class="delete-properti-button" >sup</button>
                         </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach
