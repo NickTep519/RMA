@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contract;
 use Illuminate\Http\Request;
 
 class ContractController extends Controller
@@ -15,7 +16,16 @@ class ContractController extends Controller
    
     public function create()
     {
-        return ; 
+        $contract = new Contract() ; 
+
+        $contract->fill([
+
+        ]) ; 
+
+        return view('managers.contracts.form', [
+
+                'contract' => $contract
+        ]) ; 
     }
 
     

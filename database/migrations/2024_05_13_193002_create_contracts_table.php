@@ -17,10 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('tenant_name') ;
             $table->string('tenant_phone') ; 
+            $table->unsignedInteger('idl')->unique() ; 
             $table->unsignedInteger('npi') ; 
             $table->string('profession') ; 
             $table->integer('rent') ; 
-            $table->unsignedInteger('contract_number')->unique() ; 
+            $table->timestamp('integration_date') ; 
             $table->timestamps();
 
             $table->foreignIdFor(User::class)->nullable()->constrained()->cascadeOnDelete() ; 

@@ -19,10 +19,11 @@ class ContractFactory extends Factory
         return [
             'tenant_name' => $this->faker->name(), 
             'tenant_phone' => $this->faker->phoneNumber(), 
+            'idl' =>$this->faker->randomNumber(6, true),
             'npi' => $this->faker->randomNumber(6, true), 
             'profession' => $this->faker->word(),
             'rent' => $this->faker->numberBetween(15000, 100000),
-            'contract_number' =>$this->faker->randomNumber(6, true),
+            'integration_date' => $this->faker->dateTime($max = 'now', NULL), 
         ];
     }
 }

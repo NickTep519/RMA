@@ -2,7 +2,7 @@
     <table class="table-style">
         <thead>
             <tr>
-                <th>IDC</th>
+                <th>IDL</th>
                 <th>Nom</th>
                 <th>Quartier</th>
                 <th>Loyer(CFA)</th>
@@ -13,7 +13,12 @@
         <tbody>
             @foreach ($contracts as $contract)
                 <tr>
-                    <td>{{$contract->contract_number}}</td>
+                    <td>
+                        @if ($contract->null)
+                            En cours...
+                        @endif
+                        {{$contract->idl}}
+                    </td>
                     <td>{{$contract->tenant_name}}</td>
                     <td>{{$contract->property?->neighborhood}}</td>
                     <td>{{number_format($contract->rent, thousands_separator: ' ')}} F</td>
