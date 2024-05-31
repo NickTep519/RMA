@@ -58,5 +58,13 @@ Route::prefix('properties')->name('properties.')->group(function() {
 
 Route::post('/users/{user}/rate', [RatingCotroller::class, 'rateUser'])->name('rating') ; 
 
+/*Route::get('/test-env', function() {
+    return [
+        'WHATSAPP_API_URL' => env('WHATSAPP_API_URL'),
+        'WHATSAPP_ACCESS_TOKEN' => env('WHATSAPP_ACCESS_TOKEN')
+    ];
+});*/
+
+
 
 require __DIR__.'/auth.php' ;

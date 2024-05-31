@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ContractEvent;
+use App\Http\Requests\ContractRequest;
 use App\Models\Contract;
 use Illuminate\Http\Request;
 
 class ContractController extends Controller
 {
     
-    public function index()
-    {
-        //
-    }
-
-   
     public function create()
     {
         $contract = new Contract() ; 
@@ -29,32 +25,41 @@ class ContractController extends Controller
     }
 
     
-    public function store(Request $request)
+    public function store(ContractRequest $request)
     {
-        //
+        $contract = Contract::create($request->validated())  ; 
+        
+        event(new ContractEvent($contract)) ; 
+
+        return to_route('dashboard')->with('success', 'Le Contrat a bien été emis') ; 
+        
     }
 
   
-    public function show(string $id)
+    public function edit(Contract $contract)
     {
-        //
-    }
-
-  
-    public function edit(string $id)
-    {
-        //
+        return view('managers.contracts.form', [
+            'contract' => $contract
+        ]) ; 
     }
 
    
-    public function update(Request $request, string $id)
+    public function update(ContractRequest $request, Contract $contract)
     {
-        //
+        $contract->update($request->validated())  ; 
+        
+        event(new ContractEvent($contract)) ; 
+
+        return to_route('dashboard')->with('success', 'Le Contrat a bien été modifié') ;
     }
 
     
-    public function destroy(string $id)
+    public function destroy(Contract $contract)
     {
-        //
+        $tenant_name = $contract->tenant_name ; 
+
+        $contract->delete()  ; 
+
+        return to_route('dashboard')->with('success', 'Le contrat de '.$tenant_name.' a été bien détruit') ; 
     }
 }

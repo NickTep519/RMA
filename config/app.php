@@ -198,6 +198,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\GlideProvider::class,
+        App\Providers\WhatsAppServiceProvider::class,
         //League\Glide\Signatures\Signature::class,
 
 
