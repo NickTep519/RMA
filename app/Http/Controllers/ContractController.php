@@ -31,7 +31,7 @@ class ContractController extends Controller
         
         event(new ContractEvent($contract)) ; 
 
-        return to_route('dashboard')->with('success', 'Le Contrat a bien été emis') ; 
+        return to_route('dashboard')->with('success', 'Félicitation !!! Vous avez emis un nouveau contrat.') ; 
         
     }
 
@@ -48,9 +48,10 @@ class ContractController extends Controller
     {
         $contract->update($request->validated())  ; 
         
+        //dd($contract->tenant_phone) ; 
         event(new ContractEvent($contract)) ; 
 
-        return to_route('dashboard')->with('success', 'Le Contrat a bien été modifié') ;
+        return to_route('dashboard')->with('success', 'Le Contrat de ' .$contract->tenant_name.' a bien été modifié.') ;
     }
 
     
@@ -61,5 +62,9 @@ class ContractController extends Controller
         $contract->delete()  ; 
 
         return to_route('dashboard')->with('success', 'Le contrat de '.$tenant_name.' a été bien détruit') ; 
+    }
+
+    public function show(Contract $contract){
+        return $contract ; 
     }
 }

@@ -31,15 +31,19 @@
                     </td>
                     <td>
                         <div class="properti-buttons">
+                            <a  href="{{route('managers.contract.show',$contract)}}">
+                                <button class="edit-properti-button" >Info...</button>
+                            </a>
+
                             <a  href="{{route('managers.contract.edit',$contract)}}">
                                 <button class="edit-properti-button" >Edit</button>
                             </a>
                         
-                        <form action="{{route('managers.contract.destroy', $contract)}}" method="post">
-                            @csrf
-                            @method('delete')
-                            <button class="delete-properti-button" >sup</button>
-                        </form>
+                            <form action="{{route('managers.contract.destroy', $contract)}}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button class="delete-properti-button">Sup</button>
+                            </form>
                         </div>
                     </td>
                 </tr>

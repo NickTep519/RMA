@@ -1,10 +1,11 @@
 <?php
 
-use App\Models\Admin\Property;
 use App\Models\User;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Admin\Property;
+use App\Models\Rental;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -22,11 +23,11 @@ return new class extends Migration
             $table->string('profession') ; 
             $table->integer('rent') ; 
             $table->timestamp('integration_date')->nullable() ; 
-            $table->timestamps();
-
             $table->foreignIdFor(User::class)->nullable()->constrained()->cascadeOnDelete() ; 
             $table->foreignIdFor(Property::class)->nullable()->constrained()->cascadeOnDelete() ; 
+            $table->timestamps();
 
+            
         });
     }
 

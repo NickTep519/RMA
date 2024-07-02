@@ -5,10 +5,7 @@ namespace App\Listeners;
 use App\Models\Contract;
 use App\Events\ContractEvent;
 use App\Service\WhatsAppService;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ContractListener
 {
@@ -25,34 +22,41 @@ class ContractListener
      */
     public function handle(ContractEvent $event) 
     {
+
         if (isset($event->contract->idl) ) {
 
             $to = $event->contract->tenant_phone ; 
-            $message = 'Bonjour '.$event->contract->tenant_name. '. Votre contrat de location en cours a été modifié. Avec votre IDL ('.$event->contract->idl. '), vérifiez les nouveaux termes de votre contrat.' ; 
+            $templateName = "nv_contrat_b" ; 
+
+            $variables = [
+                $event->contract->tenant_name,
+                $event->contract->idl
+            ];
 
         }else{
 
-            $event->contract->idl = $this->generateUnniqueIdl()  ; 
+            $event->contract->idl = $this->generateUniqueIdl()  ; 
             $event->contract->user()->associate(Auth::user()) ; 
             $event->contract->save() ; 
 
             $to = $event->contract->tenant_phone ; 
-            $message = 'Bonjour '.$event->contract->tenant_name. '. Un contract de location a été emis en votre nom. Voici votre IDL : '.$event->contract->idl. '. Servez en pour Payer vos loyer en ligne sur RMA' ;    
+            $templateName = "contract_edit" ; 
+
+            $variables = [
+                $event->contract->tenant_name,
+                $event->contract->idl
+            ];
         }
 
        
-        try {
-            $response = $this->whatsAppService->sendMessage($to, $message);
-            Log::info('Message envoyé', ['response' => $response]);
-            return response()->json($response);
-        } catch (\Exception $e) {
-            Log::error('Erreur lors de l\'envoi du message', ['error' => $e->getMessage()]);
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
+            $response = $this->whatsAppService->sendMessage($to, $templateName, $variables) ;
 
+            return response()->json(['status' => 'Message sent', 'data' => $response], 200);
+
+        
     }
 
-    private function generateUnniqueIdl() {
+    private function generateUniqueIdl() {
 
         $idl = mt_rand(100000, 999999) ; 
 

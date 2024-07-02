@@ -9,12 +9,15 @@ use Livewire\Component;
 
 class Contracts extends Component
 { 
-    public $search = '' ; 
+    public $tenant_name = '' ; 
 
     public $year ;  
     public $month  ;
     public $contracts ; 
     
+    protected $queryString = [
+        'tenant_name' => ['except'=>''],
+    ] ; 
     
     public function mount() {
 
@@ -34,15 +37,15 @@ class Contracts extends Component
 
     public function filterRentals() {
 
-        $this->contracts = Contract::with(['property','rentals' => function ($query) {
-
+        $this->contracts = Contract::where('user_id', Auth::id())->
+                                    where('tenant_name', 'LIKE', "%{$this->tenant_name}%")->
+                                    whereYear('created_at', $this->year)-> 
+                                    whereMonth('created_at', $this->month)->
+                                    with(['property', 'rentals' => function ($query) {
                                             $query->whereYear('month', $this->year)->
                                                     whereMonth('month', $this->month) ;
 
-                                }])->whereYear('created_at', $this->year)-> 
-                                    whereMonth('created_at', $this->month)-> 
-                                    where('tenant_name', 'LIKE', "%{$this->search}%")->
-                                    where('user_id', Auth::id())->get() ;
+                                }])->get() ;
     }
 
     public function render()

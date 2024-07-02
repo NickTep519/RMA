@@ -18,7 +18,7 @@ class RentalFactory extends Factory
     public function definition(): array
     {
         return [
-            'month' => $this->faker->dateTime($max = 'now', $timezone = null),
+            'month'=> $this->faker->dateTimeBetween('28-05-2024', '28-07-2024'),
             'payment_status' => $this->faker->randomElement(['on_hold', 'paid', 'late']),
             'prev_payment_status' => $this->faker->randomElement(['paid', 'late']),
         ];

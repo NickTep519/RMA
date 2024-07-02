@@ -5,6 +5,9 @@ namespace App\Models;
 use App\Models\Admin\Property;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Contract extends Model
 {
@@ -19,15 +22,16 @@ class Contract extends Model
         'contract_number'
     ] ; 
 
-    public function property() {
-        return $this->belongsTo(Property::class) ; 
-    }
-
-    public function user() {
+    public function user() : BelongsTo {
         return $this->belongsTo(User::class) ; 
     }
 
-    public function rentals() {
+
+    public function property() : BelongsTo {
+        return $this->belongsTo(Property::class) ; 
+    }
+
+    public function rentals() : HasMany {
         return $this->hasMany(Rental::class) ; 
     }
 }

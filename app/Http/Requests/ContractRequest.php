@@ -23,7 +23,7 @@ class ContractRequest extends FormRequest
     {
         return [
             'tenant_name' => ['required', 'string', 'min:3'],
-            'tenant_phone' => ['required', 'regex:/^\+229 ?[1-9]\d{1,14}$/'],
+            'tenant_phone' => ['required', 'regex:/^\+229?[1-9]\d{1,14}$/'],
             'npi' => ['required', 'integer', 'digits:6'],
             'profession' => ['required', 'string', 'min:3'], 
             'rent' => ['required', 'integer'],

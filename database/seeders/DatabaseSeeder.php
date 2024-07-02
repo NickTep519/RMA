@@ -53,18 +53,16 @@ class DatabaseSeeder extends Seeder
             $image->save() ; 
         }) ; 
 
-        $contracts = Contract::factory(150)->create()->each(function($contract) use ($users, $properties){
+        $rentals = Rental::factory(300)->create() ; 
+
+        $contracts = Contract::factory(150)->create()->each(function($contract) use ($users, $properties, $rentals){
 
             $user = $users->random() ; 
-
+            
+            $contract->rentals()->saveMany($rentals->random(9))  ; 
             $contract->user()->associate($user) ; 
             $contract->property()->associate($properties->where('user_id', $user->id)->first()) ; 
             $contract->save() ; 
-        }) ; 
-
-        $rentals = Rental::factory(300)->create()->each(function($rental) use ($contracts){
-            $rental->contract()->associate(Contract::inRandomOrder()->first()) ; 
-            $rental->save() ; 
         }) ; 
         
     }

@@ -199,6 +199,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\GlideProvider::class,
         App\Providers\WhatsAppServiceProvider::class,
+        App\Providers\TwilioServiceProvider::class,
         //League\Glide\Signatures\Signature::class,
 
 
