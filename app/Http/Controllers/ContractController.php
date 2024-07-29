@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\ContractEvent;
-use App\Http\Requests\ContractRequest;
+use App\Models\Rental;
 use App\Models\Contract;
 use Illuminate\Http\Request;
+use App\Events\ContractEvent;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\ContractRequest;
+use Carbon\Carbon;
 
 class ContractController extends Controller
 {
@@ -35,24 +39,50 @@ class ContractController extends Controller
         
     }
 
+
+    public function show(Contract $contract){
+
+        if (! Gate::allows('update-contract', $contract)) {
+            abort(403);
+        }
+
+        return view('managers.dashboard.rentals-historyque', [
+            'user' => Auth::user(),
+            'contract' => $contract
+        ]) ; 
+    }
+
   
     public function edit(Contract $contract)
     {
+
+        if (! Gate::allows('update-contract', $contract)) {
+            abort(403);
+        }
+
         return view('managers.contracts.form', [
             'contract' => $contract
         ]) ; 
     }
 
-   
+
     public function update(ContractRequest $request, Contract $contract)
     {
-        $contract->update($request->validated())  ; 
+        if (! Gate::allows('update-contract', $contract)) {
+            abort(403);
+        }
+    
+        $validatedData = $request->validated();
+        $contract->update($validatedData) ; 
         
-        //dd($contract->tenant_phone) ; 
-        event(new ContractEvent($contract)) ; 
-
-        return to_route('dashboard')->with('success', 'Le Contrat de ' .$contract->tenant_name.' a bien été modifié.') ;
+        $contract->integration_date = $validatedData['integration_date'] ; 
+        $contract->save() ; 
+    
+        event(new ContractEvent($contract));
+    
+        return redirect()->route('dashboard')->with('success', 'Le Contrat de ' . $contract->tenant_name . ' a bien été modifié.');
     }
+    
 
     
     public function destroy(Contract $contract)
@@ -64,7 +94,4 @@ class ContractController extends Controller
         return to_route('dashboard')->with('success', 'Le contrat de '.$tenant_name.' a été bien détruit') ; 
     }
 
-    public function show(Contract $contract){
-        return $contract ; 
-    }
 }

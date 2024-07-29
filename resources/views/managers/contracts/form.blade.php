@@ -61,7 +61,7 @@
 
                         <div class="input-fields">
                             <label for="profession">Profession : </label>
-                            <input type="text" name="profession" id="profession" placeholder="Profession" value="{{old('profession', $contract->professon)}}" required>
+                            <input type="text" name="profession" id="profession" placeholder="Profession" value="{{old('profession', $contract->profession)}}" required>
                             @error('profession')
                                 <div class="alert alert-danger">
                                     {{$message}}

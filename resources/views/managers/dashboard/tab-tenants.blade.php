@@ -12,7 +12,7 @@
         </thead>
         <tbody>
             @foreach ($contracts as $contract)
-                <tr>
+                <tr wire:key="{{$contract->id}}">
                     <td>
                         @if ($contract->null)
                             En cours...

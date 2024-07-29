@@ -1,5 +1,6 @@
 <x-app-layout>
 
+    @guest
     <x-slot name="header">
         <nav>
             <ul class="liste-items">
@@ -17,27 +18,9 @@
                 </li>
             </ul>
         </nav>
-    </x-slot>
+    </x-slot>       
+    @endguest
+ 
+    @livewire('profile-tab')
 
-    <div>
-        <div>
-            <div>
-                <div>
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-            </div>
-
-            <div>
-                <div>
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
-
-            <div>
-                <div>
-                    @include('profile.partials.delete-user-form')
-                </div>
-            </div>
-        </div>
-    </div>
 </x-app-layout>

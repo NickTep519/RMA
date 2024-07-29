@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Managers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\ImageController;
-use App\Http\Requests\Admin\PropertyFormRequest;
-use App\Models\Admin\Property;
 use App\Models\City;
 use App\Models\Image;
-use App\Service\ImagePathGenerator;
-use Illuminate\Contracts\Filesystem\Filesystem;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\UploadedFile ;
 use Illuminate\Http\Request;
+use App\Models\Admin\Property;
+use Illuminate\Http\UploadedFile ;
+use App\Service\ImagePathGenerator;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\ImageController;
+use Illuminate\Contracts\Filesystem\Filesystem;
+use App\Http\Requests\Admin\PropertyFormRequest;
 
 class PropertyController extends Controller
 {
@@ -98,6 +99,11 @@ class PropertyController extends Controller
 
     public function edit(Property $property)
     {
+
+        if (! Gate::allows('update-property', $property)) {
+            abort(403);
+        }
+
         return view('managers.properties.form', [
             'property' => $property,
             'cities' => City::pluck('name_city', 'id'),
@@ -110,6 +116,12 @@ class PropertyController extends Controller
      */
     public function update(Filesystem $filesystem, PropertyFormRequest $request, Property $property)
     {
+
+        if (! Gate::allows('update-property', $property)) {
+            abort(403);
+        }
+
+
         $user_id = Auth::user()->id ; 
         $datas = $request->validated() ; 
         $data = collect($datas)->except('city')->all() ;  

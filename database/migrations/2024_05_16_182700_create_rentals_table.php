@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('rentals', function (Blueprint $table) {
             $table->id();
             $table->timestamp('month') ; 
-            $table->enum('payment_status', ['on_hold', 'paid', 'late'])->default('on_hold') ; 
-            $table->enum('prev_payment_status', ['paid', 'late'])->default('late') ; 
+            $table->enum('payment_status', ['En attente', 'Payé ✔️', 'En retard ❌'])->default('En attente') ; 
+            $table->enum('prev_payment_status', ['En retard ❌', 'Payé ✔️'])->default('late') ; 
             $table->foreignIdFor(Contract::class)->nullable()->constrained()->cascadeOnDelete() ; 
             $table->timestamps();
 

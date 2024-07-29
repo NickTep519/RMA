@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Actuality;
 use App\Models\Admin\Property;
 use App\Models\Contract;
-use App\Models\Image;
-use App\Models\Tenant;
 use App\Models\User;
-use App\Service\ImagePathGenerator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -51,9 +49,45 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+
+        $rules = [
+            'name' => ['required', 'string', 'max:35'],
+            'city' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'regex:/^\+(\d{3})\d{8,12}$/', Rule::unique(User::class)->ignore(Auth::user()->id) ],
+            'biography' => ['required', 'string', 'max:220']
+        ] ; 
+
+        $messages = [
+            'name.max' => 'Nom trop long.',
+            'phone.unique' => 'Numéro dejà utilisé.',
+            'phone.regex' => 'Format non Valide',
+            'biography.max' => 'Description trop longue.'
+        ] ; 
+
+        $validator = Validator::make($request->all(), $rules, $messages) ; 
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput() ; 
+        }
+
+        $user = $request->user() ; 
+
+        dd($request->biography) ; 
+
+        $user->name = $request->name ; 
+        $user->city = $request->city ; 
+        $user->email = $request->email ; 
+        $user->phone = $request->phone ; 
+        $user->biography = $request->biography ; 
+
+        $user->save() ; 
+
+        return Redirect::route('dashboard')->with('success', 'Votre profile a bien été mis à jour') ; 
+
+
+        /*$request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
@@ -61,7 +95,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');*/
     }
 
     /**

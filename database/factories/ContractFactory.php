@@ -23,7 +23,7 @@ class ContractFactory extends Factory
             'npi' => $this->faker->randomNumber(6, true), 
             'profession' => $this->faker->word(),
             'rent' => $this->faker->numberBetween(15000, 100000),
-            'integration_date' => $this->faker->dateTime($max = 'now', NULL), 
+            'integration_date' => $this->faker->dateTimeBetween('-5 months', 'now'), 
         ];
     }
 }

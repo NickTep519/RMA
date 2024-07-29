@@ -18,13 +18,13 @@
     </select> <br> <br>
 
     <div>
-        <input type="text" placeholder="Retrouver un Locataire" wire:model.live.debounce.500ms="tenant_name">
+        <input type="text" wire:model.live.debounce.250ms="tenant_name"  placeholder="Retrouver un Locataire" >
     </div>
 
     <div id="donnees-container">
 
         @if ($contracts->isEmpty())
-            @if ($year == Carbon\Carbon::now()->year && $month == Carbon\Carbon::now()->month)
+            @if ($year === Carbon\Carbon::now()->year && $month === Carbon\Carbon::now()->month)
             <p class="resultats tableau">Vous n'avez pas encore de contract emis pour ce mois en cours ! </p>
             @else
             <p class="resultats tableau">Aucun résultat ne correspond à votre recherche</p>

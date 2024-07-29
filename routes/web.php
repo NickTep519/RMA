@@ -37,7 +37,7 @@ Route::prefix('managers')->name('managers.')->group(function(){
     Route::resource('property', PropertyController::class)->except(['show', 'index'])->middleware('auth') ;
     Route::resource('contract', ContractController::class)->except('index')->middleware('auth') ; 
 }) ;
-
+ 
 Route::prefix('images')->name('image.')->group(function (){
     Route::get('/{path}', [ImageController::class, 'show'])->where('path', '.*') ; 
     Route::delete('/{image}', [ImageController::class, 'destroy'])->name('destroy') ; 

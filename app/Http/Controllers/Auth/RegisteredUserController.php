@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Property;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -36,7 +35,7 @@ class RegisteredUserController extends Controller
         $rules = [
             'name' => ['required', 'string', 'max:255'],
             'phone' => [
-                        'required', 'string',
+                        'required', 'string', 'regex:/^\+(\d{3})\d{8,12}$/',
                         Rule::unique(User::class) 
                     ], 
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -44,12 +43,12 @@ class RegisteredUserController extends Controller
 
         $messages = [
             'phone.regex' => 'Le numéro de téléphone n\'est pas dans un format valide.',
-            'phone.unique' => 'Ce numéro de téléphone est déjà utilisé par un autre utilisateur.',
+            'phone.unique' => 'Ce numéro de téléphone est déjà utilisé.',
         ] ; 
 
         $validator = Validator::make($request->all(), $rules, $messages) ; 
 
-        if ($validator->fails()) {
+        if ($validator->fails()) { 
             return redirect('register')->withErrors($validator)->withInput() ; 
         }
 
@@ -63,7 +62,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME) ; 
+        return to_route('profile.edit') ; 
        
     }
 }

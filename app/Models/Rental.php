@@ -15,9 +15,10 @@ class Rental extends Model
         'prev_payment_status',
     ] ; 
 
-    protected $dates = [
-        'month'
+    protected $casts = [
+        'month' => 'datetime',
     ] ; 
+    
 
     public function contract() {
         return $this->belongsTo(Contract::class) ; 

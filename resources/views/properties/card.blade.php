@@ -47,7 +47,7 @@
         </div>
 
         <div class="user-biography">
-            <p>{{$property->user?->biography}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis est deleniti aliquid quia repellendus sunt, optio deserunt vero.</p>
+            <p>{{$property->user?->biography}} </p>
         </div>
     </div>
     

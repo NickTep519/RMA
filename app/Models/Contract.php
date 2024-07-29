@@ -22,10 +22,13 @@ class Contract extends Model
         'contract_number'
     ] ; 
 
+    protected $casts = [
+        'integration_date' => 'datetime',
+    ] ; 
+
     public function user() : BelongsTo {
         return $this->belongsTo(User::class) ; 
     }
-
 
     public function property() : BelongsTo {
         return $this->belongsTo(Property::class) ; 

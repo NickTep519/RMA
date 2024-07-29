@@ -2,7 +2,7 @@
 
     <section class="filters">
         <form action="{{route('managers.index')}}" method="GET">
-            <input type="text" placeholder="Trouver un gestionnaire de bien" wire:model.live.debounce.250ms="user" >
+            <input type="text"  wire:model.live.debounce.250ms="user" placeholder="Trouver un gestionnaire de bien" >
         </form>
     </section>
     

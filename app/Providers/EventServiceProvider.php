@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\ContactEvent;
 use App\Events\ContractEvent;
+use App\Listeners\ContactListener;
 use App\Listeners\ContractListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -23,6 +25,10 @@ class EventServiceProvider extends ServiceProvider
 
         ContractEvent::class => [
             ContractListener::class, 
+        ],
+
+        ContactEvent::class => [
+            ContactListener::class
         ]
     ];
 
