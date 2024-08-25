@@ -127,7 +127,7 @@
             <div class="image">
                 @forelse ($images as $image)
                     <div>
-                        <img src="{{$image->name}}" alt="{{$property->name}}" class="img">
+                        <img src="{{app(App\Service\ImagePathGenerator::class)->generate($image->name, ['h'=>200, 'w'=>200])}}" alt="{{$property->name}}" class="img">
                         <form action="{{route('image.destroy', $image)}}" method="POST">
                             @csrf
                             @method('delete')
@@ -148,3 +148,13 @@
  
 </body>
 </html>
+
+
+
+@if (!$images->isEmpty())
+                        @foreach ($images as $image)
+                            <div class="gallery-image" @if ($loop->index==0) id="image-to-resize" @else class="hidden" @endif >
+                                <img src="{{app(App\Service\ImagePathGenerator::class)->generate($image->name, ['h'=>500, 'w'=>500])}}" alt="Two each of gray, white, and black shirts laying flat." class="object-cover object-center">
+                            </div>                        
+                        @endforeach
+                    @endif

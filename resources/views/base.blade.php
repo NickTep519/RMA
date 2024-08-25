@@ -26,7 +26,7 @@
                 @auth
                     <div class="user-image">
                         <a href="{{route('dashboard')}}">
-                            <img src="path/to/user-profile.jpg" alt="User Image">
+                            <img src="{{app(App\Service\ImagePathGenerator::class)->generate(Illuminate\Support\Facades\Auth::user()->profile_image, ['h'=>50, 'w'=>50])}}" alt="{{Illuminate\Support\Facades\Auth::user()->name}}">
                         </a>
                     </div>
                     <form action="{{route('logout')}}" method="post">

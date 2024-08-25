@@ -1,6 +1,6 @@
 <div>
     <section class="filters">
-        <h2>Filtres</h2>
+        <h2>Filtrer</h2>
         <form action="{{route('properties.index')}}" method="GET">
             <input type="number" name="price" placeholder="Budget Max" wire:model.live.debounce.250ms="price" value="{{$values['price']?? ''}}">
 

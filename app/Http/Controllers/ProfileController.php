@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Actuality;
-use App\Models\Admin\Property;
-use App\Models\Contract;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Image;
+use App\Models\Contract;
+use App\Models\Actuality;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
+use App\Models\Admin\Property;
+use App\Http\Controllers\Controller;
+use App\Service\ImagePathGenerator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
-use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
@@ -55,26 +57,38 @@ class ProfileController extends Controller
         $rules = [
             'name' => ['required', 'string', 'max:35'],
             'city' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'regex:/^\+(\d{3})\d{8,12}$/', Rule::unique(User::class)->ignore(Auth::user()->id) ],
+            //'phone' => ['required', 'regex:/^\+(\d{3})\d{8,12}$/', Rule::unique('users')->ignore(Auth::user()->id)],
             'biography' => ['required', 'string', 'max:220']
         ] ; 
 
         $messages = [
             'name.max' => 'Nom trop long.',
             'phone.unique' => 'Numéro dejà utilisé.',
-            'phone.regex' => 'Format non Valide',
+            //'phone.regex' => 'Format non Valide',
             'biography.max' => 'Description trop longue.'
         ] ; 
 
         $validator = Validator::make($request->all(), $rules, $messages) ; 
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput() ; 
+            return redirect()->back()->withErrors($validator)->withInput() ;
         }
 
         $user = $request->user() ; 
 
-        dd($request->biography) ; 
+        $image = $request->file('profile_image') ; 
+        
+        /** @var UploadedFile */
+
+        if ($request->hasFile('profile_image')) {
+
+            if (!$image->getError()) {
+
+                $imageName = 'profile_image_'. time() .'.'. $image->getClientOriginalExtension() ; 
+                $user->profile_image = $image->storeAs('', $imageName ) ;
+     
+            }
+        } 
 
         $user->name = $request->name ; 
         $user->city = $request->city ; 
@@ -86,16 +100,6 @@ class ProfileController extends Controller
 
         return Redirect::route('dashboard')->with('success', 'Votre profile a bien été mis à jour') ; 
 
-
-        /*$request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');*/
     }
 
     /**

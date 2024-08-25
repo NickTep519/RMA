@@ -59,4 +59,9 @@ class User extends Authenticatable
     public function contracts() {
         return $this->hasMany(Contract::class) ; 
     }
+
+
+    public function subscriptions() : HasMany {
+        return $this->hasMany(Subscription::class) ; 
+    }
 }

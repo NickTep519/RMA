@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\Service\ImagePathGenerator;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -26,7 +28,7 @@ class UserFactory extends Factory
             'city' => $this->faker->city(),
             'phone' => $this->faker->phoneNumber(), 
             'biography' =>$this->faker->sentence(12, true),
-            'profile_image' => $this->faker->image('public/storage/app/public',300,300, null, false),
+            'profile_image' => app(ImagePathGenerator::class)->generate('profil_default.jpg', ['h'=>200, 'w'=>200]),
             'moyenne_rating' =>$this->faker->numberBetween(1,5),
 
         ];

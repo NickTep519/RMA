@@ -3,7 +3,7 @@
     <div class="profile" >
 
         <div class="profile-header">
-            <a href="{{route('dashboard')}}"><img src="{{app(App\Service\ImagePathGenerator::class)->generate('profil_default.jpg', ['h'=>200, 'w'=>200])}}" alt="{{$user->name}}" class="profile-img"></a>
+            <a href="{{route('dashboard')}}"><img src="{{app(App\Service\ImagePathGenerator::class)->generate($user->profile_image, ['h'=>200, 'w'=>200])}}" alt="{{$user->name}}" class="profile-img"></a>
             <div class="profile-text-container">
                 <h1 class="profile-title">RMA</h1>
                 <p class="profile-email">{{$user->name}}</p>

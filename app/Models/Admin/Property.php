@@ -5,6 +5,7 @@ namespace App\Models\Admin ;
 use App\Models\City;
 use App\Models\Contract;
 use App\Models\Picture;
+use App\Models\Subscription;
 use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -50,6 +51,10 @@ class Property extends Model
 
     public function contract() {
         return $this->hasOne(Contract::class) ; 
+    }
+
+    public function subscription() {
+        $this->belongsTo(Subscription::class) ; 
     }
 
 }

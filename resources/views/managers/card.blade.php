@@ -1,11 +1,11 @@
 <div class="manager-card">
     <div class="profile-picture">
-        <a href="{{route('managers.show', $user)}}"><img src="path/to/profile_picture1.jpg" alt="Photo de profil"></a>
+        <a href="{{route('managers.show', $user)}}"><img src="{{app(App\Service\ImagePathGenerator::class)->generate($user->profile_image, ['h'=>100, 'w'=>100])}}" alt="{{$user->name}}"></a>
     </div>
 
     <a href="{{route('managers.show', $user)}}"><h2>{{$user->name}}</h2></a>
 
-    <p class="biography">Biographie du gestionnaire de biens. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit, odio sit amet mollis mollis.{{$user->biography}}</p>
+    <p class="biography">{{$user->biography}}</p>
 
     <div class="rating">
         @for ($i = 1; $i <= 5; $i++)

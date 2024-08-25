@@ -26,7 +26,7 @@ class ContractListener
         if (isset($event->contract->idl) ) {
 
             $to = $event->contract->tenant_phone ; 
-            $templateName = "nv_contrat_b" ; 
+            $templateName = 'nv_contrat_b' ; 
 
             $variables = [
                 $event->contract->tenant_name,
@@ -40,7 +40,7 @@ class ContractListener
             $event->contract->save() ; 
 
             $to = $event->contract->tenant_phone ; 
-            $templateName = "contract_edit" ; 
+            $templateName = 'contract_edit' ; 
 
             $variables = [
                 $event->contract->tenant_name,

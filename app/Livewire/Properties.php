@@ -26,7 +26,8 @@ class Properties extends Component
     {
         $query = Property::where('price','<=', $this->price)->
                         where('neighborhood', 'LIKE', "%{$this->neighborhood}%")-> 
-                        where('title', 'LIKE', "%{$this->type}%") ; 
+                        where('title', 'LIKE', "%{$this->type}%")->
+                        where('sold', false) ; 
 
         if ($this->city !== 0) {
             $query->where('city_id', $this->city) ; 

@@ -5,7 +5,7 @@
 
         <!-- Logo de l'application -->
         <div class="logo">
-            <img src="{{app(App\Service\ImagePathGenerator::class)->generate('logo.png', ['h'=>120, 'w'=>120])}}" style=" border-radius: 50%; margin-top: 20px;" alt="Logo  recherche de maison ou d'appartement">
+            <img src="{{app(App\Service\ImagePathGenerator::class)->generate('logo.PNG', ['h'=>120, 'w'=>120])}}" style=" border-radius: 50%; margin-top: 20px;" alt="Logo  recherche de maison ou d'appartement">
         </div>
 
         <h2>Inscription</h2>

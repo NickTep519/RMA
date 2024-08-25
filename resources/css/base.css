@@ -144,11 +144,11 @@ h2 {
 
 
 .agent-thumbnail {
-    margin-right: 10px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     overflow: hidden ;
+    margin-right: 10px;
 }
 
 .agent-thumbnail img {
@@ -184,18 +184,9 @@ h2 {
     color: #888;
 }
 
-.property-actions a {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #333;
-    color: white;
+.property-actions a{
     text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.property-actions a:hover {
-    background-color: #555;
+    color: black;
 }
 
 .property-others {

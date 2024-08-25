@@ -14,7 +14,7 @@
 
         <aside class="sidebar">
             <div class="profile-picture">
-                <img src="{{ asset('path/to/profile_picture.jpg') }}" alt="Photo de profil RMA">
+                <img src="{{app(App\Service\ImagePathGenerator::class)->generate($user->profile_image, ['h'=>500, 'w'=>500])}}" alt="{{$user->name}}">
             </div>
         
             <a href="{{route('managers.show', $user)}}" class="user-name">

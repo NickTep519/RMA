@@ -1,4 +1,5 @@
-<form action="{{ route('profile.update') }}" method="POST" class="account">
+@vite(['resources/css/app.css'])
+<form action="{{ route('profile.update') }}" method="POST" class="account" enctype="multipart/form-data">
     @csrf
     @method('PATCH')
     
@@ -65,6 +66,26 @@
                     {{$message}}
                 </div>
             @enderror
+        </div>
+    </div>
+
+    <div class="space-y-12">
+        <div class="col-span-full">
+            <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Photo de profile</label>
+            <div class="mt-2 flex items-center gap-x-3">
+                <svg class="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <img src="{{app(App\Service\ImagePathGenerator::class)->generate($user->profile_image, ['h'=>200, 'w'=>200])}}" alt="{{$user->name}}" class="profile-img">
+                </svg>
+                <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    <div class="mt-4 flex text-sm leading-6 text-gray-600">
+                        <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                          <span>Changer</span>
+                          <input id="file-upload" name="profile_image" type="file" class="sr-only">
+                        </label>
+                    </div>
+                </button>
+               
+            </div>
         </div>
     </div>
 

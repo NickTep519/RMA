@@ -8,7 +8,7 @@
     <div class="container">
 
         <div class="logo">
-            <img src="{{app(App\Service\ImagePathGenerator::class)->generate('logo.png', ['h'=>120, 'w'=>120])}}" style=" border-radius: 50%; margin-top: 20px;" alt="Logo Recherche de Maison ou d'appartement">
+            <img src="{{app(App\Service\ImagePathGenerator::class)->generate('logo.PNG', ['h'=>120, 'w'=>120])}}" style=" border-radius: 50%; margin-top: 20px;" alt="Logo Recherche de Maison ou d'appartement">
         </div>
 
         <h2>Connexion</h2>

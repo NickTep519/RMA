@@ -1,14 +1,16 @@
 <?php
 
-use App\Http\Controllers\ContractController;
-use App\Http\Controllers\Managers\PropertyController;
-use App\Http\Controllers\Managers\ManagersController;
-use App\Http\Controllers\Properties\DiscoveryPropertiesContoller;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RatingCotroller;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ContractController;
+use App\Http\Controllers\KkController;
+use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\Managers\ManagersController;
+use App\Http\Controllers\Managers\PropertyController;
+use App\Http\Controllers\Properties\DiscoveryPropertiesContoller;
 
 
 /*
@@ -34,7 +36,7 @@ Route::middleware('auth')->name('profile.')->group(function () {
 Route::prefix('managers')->name('managers.')->group(function(){
     Route::get('/', [ManagersController::class, 'index'])->name('index') ; 
     Route::get('/{user}', [ManagersController::class, 'show'])->name('show') ;
-    Route::resource('property', PropertyController::class)->except(['show', 'index'])->middleware('auth') ;
+    Route::resource('property', PropertyController::class)->except(['show', 'index'])->middleware(['auth', 'subscribe']) ;
     Route::resource('contract', ContractController::class)->except('index')->middleware('auth') ; 
 }) ;
  
@@ -56,8 +58,12 @@ Route::prefix('properties')->name('properties.')->group(function() {
     ) ; 
 }) ;  
 
-Route::post('/users/{user}/rate', [RatingCotroller::class, 'rateUser'])->name('rating') ; 
+Route::name('subscribe.')->middleware('auth')->group(function(){
+    Route::get('/subscribe', [SubscriptionController::class, 'index'])->name('index') ; 
+    Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('store') ; 
+}) ; 
 
+Route::post('/users/{user}/rate', [RatingCotroller::class, 'rateUser'])->name('rating') ; 
 
 /*Route::get('/test-env', function() {
     return [

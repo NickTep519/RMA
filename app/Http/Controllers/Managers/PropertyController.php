@@ -3,17 +3,14 @@
 namespace App\Http\Controllers\Managers;
 
 use App\Models\City;
+use App\Models\User;
 use App\Models\Image;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Admin\Property;
 use Illuminate\Http\UploadedFile ;
-use App\Service\ImagePathGenerator;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Controllers\ImageController;
-use Illuminate\Contracts\Filesystem\Filesystem;
 use App\Http\Requests\Admin\PropertyFormRequest;
 
 class PropertyController extends Controller
@@ -55,9 +52,14 @@ class PropertyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Filesystem $filesystem, PropertyFormRequest $request)
+    public function store(PropertyFormRequest $request)
     {
+
         $user_id = Auth::user()->id ; 
+
+        $user = User::find($user_id) ; 
+        $subscription = $user->subscriptions()->latest()->first();
+
         $datas = $request->validated() ; 
         $data = collect($datas)->except('city')->all() ;  
 
@@ -65,28 +67,32 @@ class PropertyController extends Controller
 
         $city = City::find($datas['city']) ; 
         $property->city()->associate($city) ; 
-        $property->user_id = $user_id ; 
+        $property->user()->associate($user) ; 
+        $property->subscription()->associate($subscription) ; 
         $property->save() ;
 
         
         $images = $request->validated('images') ; 
         
-        /** @var UploadedFile */
 
-        foreach ($images as $image) {
+        if ($request->hasFile('images')) {
 
-            if (!$image->getError()) {
-
-                $img = $image->store() ;
-                $path = Storage::path($img) ; 
- 
-                $imgg = new Image() ; 
-                $imgg->name = app(ImagePathGenerator::class)->generate($path, 200, 200) ; 
-                $imgg->base_name = $img ; 
-                $imgg->property()->associate($property) ; 
-                $imgg->save() ; 
-            }
- 
+            foreach ($images as $image) {
+    
+                if (!$image->getError() && Image::where('property_id', $property->id)->count() < 6) {
+                     
+                    /** @var UploadedFile */
+    
+                    $imageName = 'image_property_'. $property->id .'_'. Str::random(10) .'_'. time() .'.' .$image->getClientOriginalExtension() ; 
+    
+                    $img = Image::create([
+                         'name' => $image->storeAs('', $imageName )
+                    ])->property()->associate($property) ; 
+                     
+                    $img->save()  ; 
+                }
+            } 
+       
         }
 
         return to_route('dashboard')->with('success', 'Le bien a été bien AJOUTE') ; 
@@ -114,7 +120,7 @@ class PropertyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Filesystem $filesystem, PropertyFormRequest $request, Property $property)
+    public function update(PropertyFormRequest $request, Property $property)
     {
 
         if (! Gate::allows('update-property', $property)) {
@@ -136,27 +142,26 @@ class PropertyController extends Controller
         
         $images = $request->validated('images') ; 
         
-        /** @var UploadedFile */
 
         if ($request->hasFile('images')) {
 
             foreach ($images as $image) {
-
-                if (!$image->getError()) {
     
-                    $img = $image->store() ;
-                    $path = basename($img) ;
-     
-                    $imgg = new Image() ; 
-                    $imgg->name = app(ImagePathGenerator::class)->generate($path, 200, 200) ; 
-                    $imgg->base_name = $img ; 
-                    $imgg->property()->associate($property) ; 
-                    $imgg->save() ; 
+                if (!$image->getError() && Image::where('property_id', $property->id)->count() < 6) {
+                     
+                    /** @var UploadedFile */
+    
+                    $imageName = 'image_property_'.$property->id.'_'. Str::random(10) .'_'. time() .'.' .$image->getClientOriginalExtension() ; 
+    
+                    $img = Image::create([
+                         'name' => $image->storeAs('', $imageName )
+                    ])->property()->associate($property) ; 
+                     
+                    $img->save()  ; 
                 }
-             
-            }
-
-        }   
+            } 
+       
+        }
 
         return to_route('dashboard')->with('success', 'Le bien a été bien MODIFIE') ; 
     }

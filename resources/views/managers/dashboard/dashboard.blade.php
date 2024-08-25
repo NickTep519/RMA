@@ -17,7 +17,7 @@
     
             <div class="banniaire">
                 <div class="profile-picture">
-                    <img src="{{app(App\Service\ImagePathGenerator::class)->generate('profil_default.jpg', ['h'=>200, 'w'=>200])}}" alt="">
+                    <img src="{{app(App\Service\ImagePathGenerator::class)->generate($user->profile_image, ['h'=>500, 'w'=>500])}}" alt="RMA - {{$user->name}}">
                 </div>
             </div>
                 

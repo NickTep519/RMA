@@ -22,23 +22,22 @@
     <div class="property-actions">
 
         <div class="user-big">
+
             <div class="agent-thumbnail">
                 <a href="{{route('managers.show', $property->user)}}">
-                    <img src="path/to/agent-thumbnail.jpg" alt="Agent Thumbnail">
+                    <img src="{{app(App\Service\ImagePathGenerator::class)->generate($property->user->profile_image, ['h'=>50, 'w'=>50])}}" alt="{{$property->user->name}}">
                 </a>
             </div>
     
             <div class="user-name">
-                <p>{{$property->user->name}}</p>
+                <a href="{{route('managers.show', $property->user)}}"><p>{{$property->user->name}}</p></a>
             </div>
         
             <div class="rating">
                 @for ($i = 1; $i <= 5; $i++)
                     @if ($i <= $property->user->moyenne_rating)
                         <span class="star filled">&#9733;</span>
-                        <!--<i class="star filled">&#9733;</i>-->
                     @else
-                        <!--<i class="star">&#9733;</i>-->
                         <span class="star">&#9733;</span>
                     @endif
                 @endfor

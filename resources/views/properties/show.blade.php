@@ -99,18 +99,13 @@
             <!-- Image gallery -->
             <div class="mx-auto mt-6 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 <div class="gallery-container">
-                    <div class="gallery-image" id="image-to-resize">
-                        <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg" alt="Two each of gray, white, and black shirts laying flat." class="object-cover object-center">
-                    </div>
-                    <div class="gallery-image hidden">
-                        <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg" alt="Model wearing plain black basic tee." class="object-cover object-center">
-                    </div>
-                    <div class="gallery-image hidden">
-                        <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg" alt="Model wearing plain gray basic tee." class="object-cover object-center">
-                    </div>
-                    <div class="gallery-image hidden">
-                        <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg" alt="Model wearing plain white basic tee." class="object-cover object-center">
-                    </div>
+                    @if (!$images->isEmpty())
+                        @foreach ($images as $image)
+                            <div class="gallery-image @if($loop->index !== 0) hidden @endif " @if ($loop->index === 0) id="image-to-resize" @endif >
+                                <img src="{{app(App\Service\ImagePathGenerator::class)->generate($image->name, ['h'=>500, 'w'=>500])}}" alt="Two each of gray, white, and black shirts laying flat." class="object-cover object-center">
+                            </div>                        
+                        @endforeach
+                    @endif
                 </div>
             </div>
 
