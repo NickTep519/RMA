@@ -52,22 +52,27 @@
         <main class="main-content">
             <div id="contenu-general" class="tabcontent active" >
             
-                @if ($contract->user_id !== auth()->id())
-                    <h2>Aucun Contrat trouvé</h2>
-                @else
-                    <h1>{{$contract->tenant_name}}</h1>
-                    <h2>IDL : {{$contract->idl}}</h2>
-                    <p> Intégration : {{$contract->integration_date->translatedformat('d M Y')}}</p>
+                <h1>{{$contract->tenant_name}}</h1>
+                <h2>IDL : {{$contract->idl}}</h2>
 
-                    @livewire('Rentals', [
-                        'contract' => $contract
-                    ])     
-                @endif
+                <div class="tenant-infos">
+                    <div>
+                        <p> Profession : {{$contract->profession}} </p>
+                        <p> NPI : {{$contract->npi}} </p>
+                    </div>
+                    <div>
+                        <p> Tel : {{$contract->tenant_phone}} </p>
+                        <p> Date d'intégration : {{$contract->integration_date->translatedformat('d M Y')}}</p>
+                    </div>
+                </div>
+                   
+                @livewire('Rentals', [
+                    'contract' => $contract
+                ])
                
             </div> 
         </main>
 
-    
     </div>
     
 @endsection

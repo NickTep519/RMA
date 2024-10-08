@@ -12,16 +12,28 @@
         <tbody>
             @foreach ($rentals as $rental)
                 <tr wire:key="{{$contract->id}}">
-                    <td>{{$rental->month->translatedformat('M Y')}}</td>
-                    <td>{{$rental->payment_status}}</td>
+                    <td> {{$rental->month->translatedformat('M Y')}} </td>
                     <td>
-                        @if ($rental->payment_status === 'Payé ✔️')
+                        @if ($rental->payment_status)
+                            ✔️
+                        @else
+                            ❌    
+                        @endif
+                    </td>
+                    <td>
+                        @if ($rental->payment_status)
                             {{$rental->created_at->translatedformat('d M Y')}}
                         @else
                             --
                         @endif
                     </td>
-                    <td>{{$rental->prev_payment_status}}</td>
+                    <td>
+                        @if ($rental->prev_payment_status)
+                            ✔️
+                        @else
+                            ❌    
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </tbody>

@@ -19,13 +19,15 @@
                 <p></p>
 
                 <form action="{{route('subscribe.store')}}" method="POST">
+                    @csrf
+                    
                     <input type="hidden" name="plan" value="pay_per_listing">
                     <script
                       src="https://cdn.fedapay.com/checkout.js?v=1.1.7"
                       data-public-key="pk_live_ckCSMu5RwMO89o4HA7P9DJw3"
                       data-button-text="Choisir"
                       data-button-class="button-class"
-                      data-transaction-amount="100"
+                      data-transaction-amount="500"
                       data-transaction-description="RMA, le gestionnaire de bien immobilier en ligne qu'il vous faut"
                       data-currency-iso="XOF">
                     </script>
@@ -41,7 +43,9 @@
                 </ul>
 
                 <form action="{{route('subscribe.store')}}" method="POST">
-                    <input type="hidden" name="field" value="monthly">
+                    @csrf
+
+                    <input type="hidden" name="plan" value="monthly">
                     <script
                       src="https://cdn.fedapay.com/checkout.js?v=1.1.7"
                       data-public-key="pk_live_ckCSMu5RwMO89o4HA7P9DJw3"
@@ -57,14 +61,17 @@
                 <h2>Abonnement Annuel</h2>
                 <p>20 500 FCFA / an</p>
                 <ul>
-                    <li>Gestion des locataires incluse</li>
+                    <li>Rapport de payements de Loyer.</li>
                     <li>Emission de Contract de bail.</li>
-                    <li>Accès à des rapports Mensuels.</li>
-                    <li>Mis en avant de bien.</li>
-                    <li>Promotion des biens ou d'autres services partenaires.</li>
+                    <li>Autres services partenaires</li>
+                    <li>Gestion des locataires</li>
+                    <li>Mis en avant des biens.</li>
+                    <li>Promotion des biens.</li>
                 </ul>
 
                 <form action="{{route('subscribe.store')}}" method="POST">
+                    @csrf
+
                     <input type="hidden" name="plan" value="yearly">
                     <script
                       src="https://cdn.fedapay.com/checkout.js?v=1.1.7"

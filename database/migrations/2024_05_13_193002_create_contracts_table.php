@@ -2,7 +2,6 @@
 
 use App\Models\User;
 use App\Models\Admin\Property;
-use App\Models\Rental;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;

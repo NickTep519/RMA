@@ -18,11 +18,6 @@ class RatingCotroller extends Controller
             return back()->with('error_rating', 'Vous avez déjà noté cet agent. ') ; 
         }
 
-        /*Rating::create([
-            'user_id' => $user->id,
-            'ip_adress' => $request->ip(),
-            'rating' => $request->validated('note')
-        ]) ; */
         $rating = new Rating() ; 
         $rating->user_id = $user->id ;
         $rating->ip_adress = $request->ip() ; 

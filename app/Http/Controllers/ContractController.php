@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rental;
 use App\Models\Contract;
-use Illuminate\Http\Request;
 use App\Events\ContractEvent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\ContractRequest;
-use Carbon\Carbon;
+use App\Models\Admin\Property;
 
 class ContractController extends Controller
 {
@@ -22,9 +20,11 @@ class ContractController extends Controller
 
         ]) ; 
 
+
         return view('managers.contracts.form', [
 
-                'contract' => $contract
+                'contract' => $contract,
+                'properties' => Property::where('user_id', Auth::user()->id)->where('sold', false)->pluck('title', 'id')
         ]) ; 
     }
 
@@ -61,7 +61,9 @@ class ContractController extends Controller
         }
 
         return view('managers.contracts.form', [
-            'contract' => $contract
+            'contract' => $contract,
+            'properties' => Property::where('user_id', Auth::user()->id)->where('sold', false)->pluck('title', 'id')
+
         ]) ; 
     }
 
@@ -71,9 +73,12 @@ class ContractController extends Controller
         if (! Gate::allows('update-contract', $contract)) {
             abort(403);
         }
+
     
         $validatedData = $request->validated();
         $contract->update($validatedData) ; 
+
+        dd($validatedData['property']) ; 
         
         $contract->integration_date = $validatedData['integration_date'] ; 
         $contract->save() ; 

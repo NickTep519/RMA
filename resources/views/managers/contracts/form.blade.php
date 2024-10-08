@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 
     <meta charset="UTF-8">
@@ -70,12 +70,17 @@
                         </div>
 
                         <div class="input-fields">
-                            <label for="rent">Loyer : </label>
-                            <input type="number" name="rent" id="rent" placeholder="Loyer" value="{{old('rent', $contract->rent)}}" required>
-                            @error('rent')
-                                <div class="alert alert-danger">
+                            <label for="property">Le Bien</label>
+                            <select id="property" name="property" >
+                                @foreach ($properties as $k => $property)
+                                    <option  @if($contract->property()->pluck('id')->contains($k)) selected @endif value="{{$k}}"> {{$property}} </option>
+                                @endforeach
+                            </select>
+                        
+                            @error('property')
+                                <div class="invalid-feedback">
                                     {{$message}}
-                                </div>
+                                </div>    
                             @enderror
                         </div>
                         

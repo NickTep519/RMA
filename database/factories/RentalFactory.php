@@ -17,10 +17,20 @@ class RentalFactory extends Factory
     
     public function definition(): array
     {
+
+        $status_payment = $this->faker->boolean(50)  ; 
+        
+        if ($status_payment) {
+            $month = $this->faker->dateTimeBetween('-4 months', '-2 months') ; 
+        } else {
+            $month = $this->faker->dateTimeBetween('-2 months', 'now') ; 
+        }
+        
+
         return [
-            'month'=> $this->faker->dateTimeBetween('-4 months', 'now'),
-            'payment_status' => $this->faker->randomElement(['En attente', 'Payé ✔️', 'En retard ❌']),
-            'prev_payment_status' => $this->faker->randomElement(['Payé ✔️', 'En retard ❌']),
+            'month'=> $month,
+            'payment_status' => $status_payment,
+            'prev_payment_status' => $this->faker->boolean(80)
         ];
     }
 }

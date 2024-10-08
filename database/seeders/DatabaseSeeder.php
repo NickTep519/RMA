@@ -30,14 +30,9 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $users = User::factory(10)->create() ; 
-        $userNick = User::factory()->create([
-            'name' => 'Nick Tep',
-            'email' => 'nicktep519@gmail.com',
-            'phone' => '+229 65372714'
-        ]) ; 
 
        
-        $actualities = Actuality::factory(8)->create() ;  
+        Actuality::factory(8)->create() ;  
         $cities = City::factory(189)->create() ; 
 
 
@@ -46,11 +41,6 @@ class DatabaseSeeder extends Seeder
             $property->city()->associate($cities->random()) ; 
             $property->save() ; 
             
-        }) ; 
-
-        $images = Image::factory(100)->create()->each(function($image) use ($properties){
-            $image->property()->associate($properties->random()) ; 
-            $image->save() ; 
         }) ; 
 
         $rentals = Rental::factory(300)->create() ; 

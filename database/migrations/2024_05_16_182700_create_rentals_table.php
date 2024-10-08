@@ -15,10 +15,11 @@ return new class extends Migration
         Schema::create('rentals', function (Blueprint $table) {
             $table->id();
             $table->timestamp('month') ; 
-            $table->enum('payment_status', ['En attente', 'Payé ✔️', 'En retard ❌'])->default('En attente') ; 
-            $table->enum('prev_payment_status', ['En retard ❌', 'Payé ✔️'])->default('late') ; 
-            $table->foreignIdFor(Contract::class)->nullable()->constrained()->cascadeOnDelete() ; 
+            $table->boolean('payment_status'); 
+            $table->boolean('prev_payment_status') ; 
             $table->timestamps();
+
+            $table->foreignIdFor(Contract::class)->nullable()->constrained()->cascadeOnDelete() ; 
 
         });
     }
@@ -31,3 +32,9 @@ return new class extends Migration
         Schema::dropIfExists('rentals');
     }
 };
+
+
+/*
+ $table->enum('payment_status', ['En attente', 'Payé ✔️', 'En retard ❌'])->default('En attente') ; 
+            $table->enum('prev_payment_status', ['En retard ❌', 'Payé ✔️'])->default('late') ; 
+ */

@@ -25,27 +25,6 @@ use App\Http\Controllers\Properties\DiscoveryPropertiesContoller;
 */
 
 
-Route::get('/dashboard', [ProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->name('profile.')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('edit') ;
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('update') ;
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('destroy') ;
-}) ;  
-
-Route::prefix('managers')->name('managers.')->group(function(){
-    Route::get('/', [ManagersController::class, 'index'])->name('index') ; 
-    Route::get('/{user}', [ManagersController::class, 'show'])->name('show') ;
-    Route::resource('property', PropertyController::class)->except(['show', 'index'])->middleware(['auth', 'subscribe']) ;
-    Route::resource('contract', ContractController::class)->except('index')->middleware('auth') ; 
-}) ;
- 
-Route::prefix('images')->name('image.')->group(function (){
-    Route::get('/{path}', [ImageController::class, 'show'])->where('path', '.*') ; 
-    Route::delete('/{image}', [ImageController::class, 'destroy'])->name('destroy') ; 
-
-}) ; 
-
 Route::get('/', [HomeController::class, 'home'])->name('home.index') ;
 
 Route::prefix('properties')->name('properties.')->group(function() {
@@ -56,7 +35,29 @@ Route::prefix('properties')->name('properties.')->group(function() {
             'property' => '[0-9]+'
         ]  
     ) ; 
+}) ; 
+
+Route::prefix('managers')->name('managers.')->group(function(){
+    Route::get('/', [ManagersController::class, 'index'])->name('index') ; 
+    Route::get('/{user}', [ManagersController::class, 'show'])->name('show') ;
+    Route::resource('property', PropertyController::class)->except(['show', 'index'])->middleware(['auth']) ;
+    Route::resource('contract', ContractController::class)->except('index')->middleware('auth') ; 
+}) ;
+
+Route::get('/dashboard', [ProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->name('profile.')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('edit') ;
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('update') ;
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('destroy') ;
 }) ;  
+  
+
+Route::prefix('images')->name('image.')->group(function (){
+    Route::get('/{path}', [ImageController::class, 'show'])->where('path', '.*') ; 
+    Route::delete('/{image}', [ImageController::class, 'destroy'])->name('destroy') ; 
+
+}) ; 
 
 Route::name('subscribe.')->middleware('auth')->group(function(){
     Route::get('/subscribe', [SubscriptionController::class, 'index'])->name('index') ; 

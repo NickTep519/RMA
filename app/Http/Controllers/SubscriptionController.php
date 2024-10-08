@@ -21,6 +21,8 @@ class SubscriptionController extends Controller
 
         $plan = $request->input('plan');
 
+        dd($plan) ; 
+
         $amount = 0;
         $endDate = NULL ;
 
@@ -47,14 +49,6 @@ class SubscriptionController extends Controller
             'end_at' => $endDate,
         ]) ;
 
-
-
-
-
-        
-
-        //
-
-        return redirect()->route('home.index')->with('message', 'Abonnement réussi!');
+        return redirect()->route('success')->with('message', 'Abonnement réussi!');
     }
 }

@@ -24,14 +24,25 @@
     <div id="donnees-container">
 
         @if ($contracts->isEmpty())
-            @if ($year === Carbon\Carbon::now()->year && $month === Carbon\Carbon::now()->month)
-            <p class="resultats tableau">Vous n'avez pas encore de contract emis pour ce mois en cours ! </p>
+
+            @if ( $year === Carbon\Carbon::now()->year && $month === Carbon\Carbon::now()->month )
+                
+                @if ($tenant_name != '')
+                    <p class="resultats tableau">Aucun résultat ne correspond à votre recherche</p>
+                @else
+                    <p class="resultats tableau">Aucun contrat n'a encore été emis pour ce mois en cours. </p>
+                @endif
+
             @else
-            <p class="resultats tableau">Aucun résultat ne correspond à votre recherche</p>
+                <p class="resultats tableau">Aucun résultat ne correspond à votre recherche</p>
             @endif
+
         @else
+
             @include('managers.dashboard.tab-tenants')
+
         @endif
         
     </div>   
+
 </div>

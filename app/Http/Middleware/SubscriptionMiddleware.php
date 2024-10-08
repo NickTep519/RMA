@@ -18,6 +18,7 @@ class SubscriptionMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        
         $plan = null ; 
 
         $user = User::find(Auth::user()->id) ; 

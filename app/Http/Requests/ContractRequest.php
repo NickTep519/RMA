@@ -26,7 +26,7 @@ class ContractRequest extends FormRequest
             'tenant_phone' => ['required', 'regex:/^\+(\d{3})\d{8,12}$/'],
             'npi' => ['required', 'integer', 'digits:6'],
             'profession' => ['required', 'string', 'min:3'], 
-            'rent' => ['required', 'integer'],
+            'property' => ['required'],
             'integration_date' => ['required', 'date']
         ];
     }

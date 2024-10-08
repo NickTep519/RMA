@@ -45,7 +45,7 @@ class PropertyController extends Controller
         return view('managers.properties.form', [ 
             'property' => $property,
             'cities' => City::pluck('name_city', 'id'),
-            'images' => $images->query()->where('id', 0)->get()
+            'images' => $images->query()->where('id', 0)->get(),
          ]) ; 
     }
 
@@ -71,10 +71,8 @@ class PropertyController extends Controller
         $property->subscription()->associate($subscription) ; 
         $property->save() ;
 
-        
         $images = $request->validated('images') ; 
         
-
         if ($request->hasFile('images')) {
 
             foreach ($images as $image) {
